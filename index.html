@@ -1,154 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Andrés Romero — Portfolio</title>
+  <meta name="description" content="Andrés Romero — Economist | Political Economy | Causal Inference | Public Policy Evaluation" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{ --bg:#0b0c10; --panel:#111218; --text:#e6e8ef; --muted:#b7bcd1; --accent:#7dd3fc; --accent-2:#a78bfa; --ring:rgba(125,211,252,.45); --card:#0f1117; --shadow:0 10px 25px rgba(0,0,0,.35); --radius:16px; }
+    @media (prefers-color-scheme: light){ :root{ --bg:#f7f8fb; --panel:#ffffff; --text:#0b0c10; --muted:#525b76; --card:#ffffff; --shadow:0 10px 25px rgba(0,0,0,.08);} }
+    *{box-sizing:border-box} html,body{margin:0;padding:0}
+    body{font-family:Inter,system-ui; color:var(--text); background:var(--bg); line-height:1.6;}
+    .container{max-width:1000px;margin:0 auto;padding:28px 18px}
+    header{position:sticky;top:0;backdrop-filter:saturate(160%) blur(8px);background:color-mix(in oklab,var(--bg) 70%,transparent);border-bottom:1px solid rgba(255,255,255,.06);z-index:50}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800}
+    .dot{width:10px;height:10px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 0 0 6px rgba(125,211,252,.15)}
+    nav a{color:var(--muted);text-decoration:none;margin:0 10px;font-weight:600}
+    nav a:hover{color:var(--text)}
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;padding:48px 0}
+    .hero h1{font-family:"Playfair Display",serif;font-size:clamp(32px,4.5vw,56px);line-height:1.05;margin:0}
+    .hero p{font-size:clamp(14px,1.5vw,18px);color:var(--muted);margin:16px 0 24px}
+    .cta{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{border:0;border-radius:999px;padding:12px 18px;font-weight:700;cursor:pointer;transition:.2s}
+    .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#0b0c10;box-shadow:0 8px 20px var(--ring)}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.15);color:var(--text)}
+    .headshot img{width:100%;border-radius:var(--radius)}
+    section{padding:32px 0} h2{font-size:clamp(22px,2.5vw,30px);margin:0 0 18px;font-weight:800}
+    .cards{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+    .card{grid-column:span 12;background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .grid-6{grid-column:span 6} .grid-4{grid-column:span 4} .grid-8{grid-column:span 8}
+    @media(max-width:860px){.hero{grid-template-columns:1fr}.grid-6,.grid-4,.grid-8{grid-column:span 12}}
+    .footer{padding:30px 0;border-top:1px solid rgba(255,255,255,.08);margin-top:28px;color:var(--muted);font-size:14px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand"><span class="dot"></span> Andrés Romero</div>
+      <nav aria-label="primary">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#publications">Publications</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-        <title>Rabbit : Home</title>
-        <link rel="icon" type="image/icon" href="assets/images/tabicon.ico">
+  <main class="container">
+    <section class="hero" id="about">
+      <div>
+        <h1>Economist & Political Economy Researcher</h1>
+        <p>Andrés Romero is an economist specializing in political economy, quantitative analysis, and the evaluation of public and social policies, with a particular focus on informal markets, organized crime, underground economies, and corruption in South America. He has worked in economic consulting and policy analysis for international organizations and multinational companies.</p>
+        <p>He is currently completing his MSc in Political Science and Political Economy at the London School of Economics and Political Science, where he has specialized in econometric methods applied to political science, game theory, causal inference, observational studies, and the impact evaluation of policies and programs.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#projects">See Projects</a>
+          <a class="btn btn-ghost" href="#publications">Publications</a>
+          <a class="btn btn-ghost" href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="headshot">
+        <!-- Replace with your own photo inside img/ -->
+        <img src="img/andres.jpg" alt="Andrés Romero" />
+      </div>
+    </section>
 
-        <link rel="stylesheet" type="text/css" href="">
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-        <link href="assets/css/bootstrap-theme.min.css" rel="stylesheet">
-        <link href="assets/css/font-awesome.min.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700,700i" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,700,700i|Josefin+Sans:700" rel="stylesheet">
-        <link href="assets/css/main.css" rel="stylesheet">
-        <link rel="icon" href="assets/images/logo.png">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-        
-    </head>
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="cards">
+        <article class="card grid-6"><div class="title">Border Violence & Organised Crime (Triple DiD)</div><p>Heterogeneous effects of transnational criminal groups on homicide rates at the Paraguay–Brazil frontier using a three-way fixed effects design.</p></article>
+        <article class="card grid-6"><div class="title">Prison Overcrowding & Attack Risk</div><p>Panel probability models relating prison strain to organised-crime–linked attacks in Brazil; results reported as average marginal effects.</p></article>
+      </div>
+    </section>
 
-    <body>
-        <div id="index">                                           <!-- Index starts here -->
-            <div class="container main">
-                <div class="row home">
-                    <div id = "index_left" class="col-md-6 left">
-                        <img class="img-responsive img-rabbit" src="assets/images/home.jpg">
-                    </div>
-                    <div id = "index_right" class="col-md-6 text-center right">
-                        <div class="logo">
-                            <img src="assets/images/logo.png">
-                            <h4>I am rabbit</h4>
-                        </div>
-                        <p class="home-description">
-                            Hi, I am Rabbit, Web developer from michigan, US. I am passionate about design, development and interaction. I really love what I do.
-                        </p>
-                        <div class="btn-group-vertical custom_btn animated slideinright">
-                            <div id="about" class="btn btn-rabbit">About</div>
-                            <div id="work" class="btn btn-rabbit">Work</div>
-                            <div id="contact" class="btn btn-rabbit">Contact</div>
-                        </div>      
-                        <div class="social">
-                            <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
+    <section id="publications">
+      <h2>Publications</h2>
+      <ul>
+        <li>Crime, Prisons, and Institutional Capacity at the Paraguay–Brazil Border — Working paper (2025)</li>
+        <li>Policy Evaluation Projects with International Organisations — Reports (2022–2025)</li>
+      </ul>
+    </section>
 
-                
-            </div>
-        </div>                                                      <!-- index ends here -->
+    <section id="experience">
+      <h2>Experience</h2>
+      <div class="cards">
+        <article class="card grid-8"><div class="title">Economist — Public Policy & Impact Evaluation</div><p>Quantitative policy analysis, causal inference, and sector studies in Latin America. Project management (PMI & Agile).</p></article>
+        <article class="card grid-4"><div class="title">Tech stack</div><p>R, Stata, Python, LaTeX, Git</p></article>
+      </div>
+    </section>
 
-        <div id="about_scroll" class="pages ">                      <!-- about strats here  -->
-            <div class="container main">
-                <div class="row">
-                    <div class="col-md-6 left" id="about_left">
-                        <img class="img-responsive img-rabbit" src="assets/images/about.jpg">
-                    </div>
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:andres.romero@example.com">andres.romero@example.com</a></p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/">linkedin.com/in/andres-romero</a></p>
+      <p>CV: <a href="cv/AndresRomero_CV.pdf">Download PDF</a></p>
+    </section>
 
-                    <div class="col-md-6 right" id="about_right">
-                        <a href="#index" class="btn btn-rabbit back"> <i class="fa fa-angle-left" aria-hidden="true"></i> Back to home </a>
-                        <div id="watermark">
-                            <h2 class="page-title" text-center>About</h2>
-                            <div class="marker">a</div>
-                        </div>
-                        <p class='subtitle'>Hi, I am chris Howard. A freelance web designer, front-end developer and digital planner based in US.
-                        </p>
-                        <p class="info">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>  
-                    </div>
-                </div>
-            </div>            
-        </div>                                                                <!-- About ends here -->
+    <footer class="footer">
+      <span>© <span id="y"></span> Andrés Romero — Built with a single HTML file</span>
+    </footer>
+  </main>
 
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
 
-        
-        <div id="work_scroll" class="pages">                                  <!-- Work starts here -->
-            <div class="container main">
-                <div class="row">
-                    <div class="col-md-6" id="work_left">
-                        <div id="owl-demo" class="owl-carousel owl-theme">
-                            <div class="item"><img class="img-responsive img-rabbit" src="assets/images/work.jpg"></div>
-                            <div class="item"><img class="img-responsive img-rabbit" src="assets/images/home.jpg"></div>
-                            <div class="item"><img class="img-responsive img-rabbit" src="assets/images/contact.jpg"></div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6" id="work_right">
-                        <a href="#index" class="btn btn-rabbit back"> <i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home </a>
-                        <div id="watermark">
-                            <h2 class="page-title" text-center>Work</h2>
-                            <div class="marker">w</div>
-                        </div>
-                        <p class='subtitle'>This is a selection of my web design and development work. I've been involve in many different types of project.
-                        </p>
-                        <p class="info">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
-                    </div>
-                </div>
-            </div>    
-        </div>                                                                 <!-- Work ends here  -->
-
-
-        <div id="contact_scroll" class="pages">                             <!-- Contact starts here -->
-            <div class="container main">
-                <div class="row">
-                    <div class="col-md-6 left" id="contact_left">
-                        <img class="img-responsive img-rabbit" src="assets/images/contact.jpg">
-                    </div>
-
-                    <div class="col-md-6 right" id="contact_right">
-                        <a href="#index" class="btn btn-rabbit back"> <i class="fa fa-angle-left" aria-hidden="true"></i> Back to Home </a>
-                        <div id="watermark">
-                            <h2 class="page-title" text-center>Contact</h2>
-                            <div class="marker">c</div>
-                        </div>
-                        <p class='subtitle'>I'm based in cheltenham in the UK, not far from Bristol, Birmingham, Oxford and Swindom. Drop me a line.
-                        </p>
-                        <!-- form -->
-                        <form class="form_edit"> 
-                            <div class="form-group">
-                                <input type="name" class="form-control" id="exampleInputName" placeholder="Name">
-                            </div>
-
-                            <div class="form-group">
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                            </div>
-
-                            <div class="form-group">
-                            <textarea class="form-control" rows="5" placeholder="Message"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-rabbit submit">Send Message</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-       
-            <footer class="text-center">
-                <div class="container bottom">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <p>Made with <i class="fa fa-heartbeat" aria-hidden="true"></i> by <a href="https://themewagon.com/">Themewagon</a></p>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-            
-        </div>                                                              <!-- Contact ends here -->
-        
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/script.js"></script>
     </body>
 </html>
