@@ -33,7 +33,12 @@
     .card{grid-column:span 12;background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
     .grid-6{grid-column:span 6} .grid-4{grid-column:span 4} .grid-8{grid-column:span 8}
     @media(max-width:860px){.hero{grid-template-columns:1fr}.grid-6,.grid-4,.grid-8{grid-column:span 12}}
+    .list-clean{list-style:none;padding-left:0;margin:0}
+    .list-clean li{margin:10px 0;color:var(--muted)}
+    .tag{display:inline-block;border:1px solid rgba(255,255,255,.15);padding:4px 10px;border-radius:999px;font-size:.85rem;margin-right:6px;color:var(--text)}
     .footer{padding:30px 0;border-top:1px solid rgba(255,255,255,.08);margin-top:28px;color:var(--muted);font-size:14px}
+    a.inline{color:#a7c7ff;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.25)}
+    a.inline:hover{opacity:.9}
   </style>
 </head>
 <body>
@@ -41,62 +46,116 @@
     <div class="container nav">
       <div class="brand"><span class="dot"></span> Andrés Romero</div>
       <nav aria-label="primary">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#publications">Publications</a>
-        <a href="#experience">Experience</a>
+        <a href="#studies">Studies</a>
+        <a href="#research">Research</a>
+        <a href="#work">Work Experience</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
   <main class="container">
-    <section class="hero" id="about">
+    <!-- HERO -->
+    <section class="hero" id="top">
       <div>
         <h1>Economist & Political Economy Researcher</h1>
-        <p>Andrés Romero is an economist specializing in political economy, quantitative analysis, and the evaluation of public and social policies, with a particular focus on informal markets, organized crime, underground economies, and corruption in South America. He has worked in economic consulting and policy analysis for international organizations and multinational companies.</p>
-        <p>He is currently completing his MSc in Political Science and Political Economy at the London School of Economics and Political Science, where he has specialized in econometric methods applied to political science, game theory, causal inference, observational studies, and the impact evaluation of policies and programs.</p>
+        <p>Economist specialising in political economy, quantitative analysis, and impact evaluation, with a focus on informal markets, organised crime, underground economies, and corruption in South America.</p>
+        <p>Currently completing an MSc in Political Science & Political Economy (LSE). Methods: causal inference (DiD, event study, SCM), econometrics, text-as-data. Tools: R, Stata, Python, LaTeX, Git.</p>
         <div class="cta">
-          <a class="btn btn-primary" href="#projects">See Projects</a>
-          <a class="btn btn-ghost" href="#publications">Publications</a>
+          <a class="btn btn-primary" href="#research">See Research</a>
+          <a class="btn btn-ghost" href="#work">Work Experience</a>
           <a class="btn btn-ghost" href="#contact">Contact</a>
         </div>
       </div>
       <div class="headshot">
-        <!-- Replace with your own photo inside img/ -->
+        <!-- Reemplaza por tu foto -->
         <img src="img/andres.jpg" alt="Andrés Romero" />
       </div>
     </section>
 
-    <section id="projects">
-      <h2>Projects</h2>
+    <!-- STUDIES -->
+    <section id="studies">
+      <h2>Studies</h2>
       <div class="cards">
-        <article class="card grid-6"><div class="title">Border Violence & Organised Crime (Triple DiD)</div><p>Heterogeneous effects of transnational criminal groups on homicide rates at the Paraguay–Brazil frontier using a three-way fixed effects design.</p></article>
-        <article class="card grid-6"><div class="title">Prison Overcrowding & Attack Risk</div><p>Panel probability models relating prison strain to organised-crime–linked attacks in Brazil; results reported as average marginal effects.</p></article>
+        <article class="card grid-8">
+          <div class="title"><strong>MSc Political Science & Political Economy</strong> — London School of Economics</div>
+          <ul class="list-clean">
+            <li>Core: Causal Inference (observational & experimental), Behavioural Political Economy, Quantitative Text Analysis.</li>
+            <li>Focus: Difference-in-Differences (TWFE & modern), event studies, synthetic control; policy evaluation.</li>
+          </ul>
+          <div style="margin-top:10px">
+            <span class="tag">Causal Inference</span>
+            <span class="tag">Econometrics</span>
+            <span class="tag">R / Stata</span>
+          </div>
+        </article>
+        <article class="card grid-4">
+          <div class="title"><strong>Economist (BSc equivalent)</strong></div>
+          <ul class="list-clean">
+            <li>Major in Political Economy.</li>
+            <li>Thesis on trade & policy outcomes.</li>
+          </ul>
+        </article>
       </div>
     </section>
 
-    <section id="publications">
-      <h2>Publications</h2>
-      <ul>
-        <li>Crime, Prisons, and Institutional Capacity at the Paraguay–Brazil Border — Working paper (2025)</li>
-        <li>Policy Evaluation Projects with International Organisations — Reports (2022–2025)</li>
-      </ul>
-    </section>
-
-    <section id="experience">
-      <h2>Experience</h2>
+    <!-- RESEARCH -->
+    <section id="research">
+      <h2>Research</h2>
       <div class="cards">
-        <article class="card grid-8"><div class="title">Economist — Public Policy & Impact Evaluation</div><p>Quantitative policy analysis, causal inference, and sector studies in Latin America. Project management (PMI & Agile).</p></article>
-        <article class="card grid-4"><div class="title">Tech stack</div><p>R, Stata, Python, LaTeX, Git</p></article>
+        <article class="card grid-6">
+          <div class="title"><strong>Border Violence & Organised Crime (Triple DiD)</strong></div>
+          <p>Heterogeneous effects of transnational criminal groups on homicide rates at the Paraguay–Brazil frontier using a three-way fixed-effects design and dynamic effects.</p>
+          <p class="list-clean"><a class="inline" href="#">Abstract</a> · <a class="inline" href="#">Results</a></p>
+        </article>
+        <article class="card grid-6">
+          <div class="title"><strong>Prison Overcrowding & Attack Risk</strong></div>
+          <p>Panel probability models relating prison strain to organised-crime–linked attacks in Brazil; results reported as odds ratios and average marginal effects with robust SEs.</p>
+          <p class="list-clean"><a class="inline" href="#">Working paper</a></p>
+        </article>
+        <article class="card grid-6">
+          <div class="title"><strong>Text-as-Data for Criminal Governance</strong></div>
+          <p>Newspaper and administrative records to construct subnational measures of criminal governance and institutional capacity; supervised classification and topic modelling.</p>
+          <p class="list-clean"><a class="inline" href="#">Code (R)</a></p>
+        </article>
+        <article class="card grid-6">
+          <div class="title"><strong>Policy Evaluation — Social Protection</strong></div>
+          <p>Impact evaluation for an international organisation using DiD & Synthetic Control to assess targeting and welfare outcomes.</p>
+          <p class="list-clean"><a class="inline" href="#">Policy brief</a></p>
+        </article>
       </div>
     </section>
 
+    <!-- WORK EXPERIENCE -->
+    <section id="work">
+      <h2>Work Experience</h2>
+      <div class="cards">
+        <article class="card grid-8">
+          <div class="title"><strong>Economist — Public Policy & Impact Evaluation</strong></div>
+          <ul class="list-clean">
+            <li>Quantitative policy analysis and causal inference for international organisations (UNDP, IDB, WWF, USAID, FLAR).</li>
+            <li>Sector work on governance, security/justice, social protection, and labour markets.</li>
+            <li>Project management with PMI methodology and Agile approach.</li>
+          </ul>
+        </article>
+        <article class="card grid-4">
+          <div class="title"><strong>Tech stack</strong></div>
+          <ul class="list-clean">
+            <li>R (tidyverse, fixest, did, did2s, ggplot2)</li>
+            <li>Stata (reghdfe, csdid)</li>
+            <li>Python (pandas, matplotlib)</li>
+            <li>LaTeX, Quarto, Git</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
     <section id="contact">
       <h2>Contact</h2>
-      <p>Email: <a href="mailto:andres.romero@example.com">andres.romero@example.com</a></p>
-      <p>LinkedIn: <a href="https://www.linkedin.com/">linkedin.com/in/andres-romero</a></p>
-      <p>CV: <a href="cv/AndresRomero_CV.pdf">Download PDF</a></p>
+      <p>Email: <a class="inline" href="mailto:andres.romero@example.com">andres.romero@example.com</a></p>
+      <p>LinkedIn: <a class="inline" href="https://www.linkedin.com/">linkedin.com/in/andres-romero</a></p>
+      <p>CV: <a class="inline" href="cv/AndresRomero_CV.pdf">Download PDF</a></p>
     </section>
 
     <footer class="footer">
@@ -104,10 +163,8 @@
     </footer>
   </main>
 
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
-</html>
-
-        <script src="assets/js/script.js"></script>
-    </body>
 </html>
