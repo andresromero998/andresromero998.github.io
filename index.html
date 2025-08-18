@@ -39,6 +39,7 @@
     .footer{padding:30px 0;border-top:1px solid rgba(255,255,255,.08);margin-top:28px;color:var(--muted);font-size:14px}
     a.inline{color:#a7c7ff;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.25)}
     a.inline:hover{opacity:.9}
+    .section-kicker{font-size:.85rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:8px}
   </style>
 </head>
 <body>
@@ -46,6 +47,8 @@
     <div class="container nav">
       <div class="brand"><span class="dot"></span> Andrés Romero</div>
       <nav aria-label="primary">
+        <a href="#interests">Interests</a>
+        <a href="#profile">Profile</a>
         <a href="#studies">Studies</a>
         <a href="#research">Research</a>
         <a href="#work">Work Experience</a>
@@ -68,32 +71,62 @@
         </div>
       </div>
       <div class="headshot">
-        <!-- Reemplaza por tu foto -->
         <img src="img/andres.jpg" alt="Andrés Romero" />
+      </div>
+    </section>
+
+    <!-- AREAS OF INTEREST -->
+    <section id="interests">
+      <div class="section-kicker">Areas of Interest</div>
+      <h2>Research Interests</h2>
+      <p>Informal markets · Underground economy · Organized crime · Corruption · Circular economy · Southern Cone of Latin America</p>
+    </section>
+
+    <!-- PROFILE -->
+    <section id="profile">
+      <div class="section-kicker">About</div>
+      <h2>Profile</h2>
+      <div class="cards">
+        <article class="card">
+          <p>Economist specialized in political economy, quantitative analysis, and the evaluation of public and social policies, with a particular focus on informal markets, organized crime, the underground economy, and corruption in South America. Experienced in economic consulting and policy analysis for international organizations and multinational companies.</p>
+          <p>Currently completing an MSc in Political Science and Political Economy at the London School of Economics and Political Science (LSE), with training in econometric methods applied to political science, game theory, causal inference, observational studies, and impact evaluation of policies and programs.</p>
+          <div>
+            <span class="tag">Causal Inference</span>
+            <span class="tag">Econometrics</span>
+            <span class="tag">Text-as-Data</span>
+            <span class="tag">R / Stata / Python</span>
+            <span class="tag">LaTeX / Git</span>
+          </div>
+        </article>
       </div>
     </section>
 
     <!-- STUDIES -->
     <section id="studies">
+      <div class="section-kicker">Education</div>
       <h2>Studies</h2>
       <div class="cards">
         <article class="card grid-8">
-          <div class="title"><strong>MSc Political Science & Political Economy</strong> — London School of Economics</div>
+          <div class="title"><strong>MSc Political Science & Political Economy (Candidate, 2024–2025)</strong> — London School of Economics and Political Science (LSE), England</div>
           <ul class="list-clean">
-            <li>Core: Causal Inference (observational & experimental), Behavioural Political Economy, Quantitative Text Analysis.</li>
-            <li>Focus: Difference-in-Differences (TWFE & modern), event studies, synthetic control; policy evaluation.</li>
+            <li>Courses: Quantitative Analysis for Political Science · Game Theory for Political Science · Political Economy: Current Issues · Behavioural Public Policy · Quantitative Text Analysis · Causal Inference for Observational & Experimental Studies.</li>
+            <li>Papers: <em>Organized Crime, Criminal Violence, and State Capacity — Evidence from Paraguay’s Frontier with Brazil</em> (work in progress); <em>Causal Replication and Reappraisal of Téllez (2022)</em> (Jun 2025).</li>
           </ul>
           <div style="margin-top:10px">
-            <span class="tag">Causal Inference</span>
-            <span class="tag">Econometrics</span>
+            <span class="tag">DiD / Event Study / SCM</span>
             <span class="tag">R / Stata</span>
+            <span class="tag">Impact Evaluation</span>
           </div>
         </article>
         <article class="card grid-4">
-          <div class="title"><strong>Economist (BSc equivalent)</strong></div>
+          <div class="title"><strong>Postgraduate Certificate in Project Management (2023)</strong> — San Ignacio del Loyola Post Graduate School, Paraguay</div>
+          <ul class="list-clean"><li>Specialization: PMI & Agile Approaches.</li></ul>
+        </article>
+        <article class="card grid-12">
+          <div class="title"><strong>BSc in Economics (2018–2022)</strong> — National University of Asunción, Paraguay</div>
           <ul class="list-clean">
-            <li>Major in Political Economy.</li>
-            <li>Thesis on trade & policy outcomes.</li>
+            <li>Distinguished Graduate.</li>
+            <li>Thesis: <em>Incidence of ACE 35 on Paraguay–Chile trade (1997–2021)</em>.</li>
           </ul>
         </article>
       </div>
@@ -101,6 +134,7 @@
 
     <!-- RESEARCH -->
     <section id="research">
+      <div class="section-kicker">Selected Work</div>
       <h2>Research</h2>
       <div class="cards">
         <article class="card grid-6">
@@ -128,18 +162,33 @@
 
     <!-- WORK EXPERIENCE -->
     <section id="work">
+      <div class="section-kicker">Career</div>
       <h2>Work Experience</h2>
+
+      <!-- International Organisations & Projects -->
       <div class="cards">
         <article class="card grid-8">
-          <div class="title"><strong>Economist — Public Policy & Impact Evaluation</strong></div>
+          <div class="title"><strong>International Organisations & Projects</strong></div>
           <ul class="list-clean">
-            <li>Quantitative policy analysis and causal inference for international organisations (UNDP, IDB, WWF, USAID, FLAR).</li>
-            <li>Sector work on governance, security/justice, social protection, and labour markets.</li>
-            <li>Project management with PMI methodology and Agile approach.</li>
+            <li><strong>Circular Economy Promotion Project</strong> — strategies to transition local industries to sustainability (with Moisés Bertoni Foundation & <strong>IDB</strong>).</li>
+            <li><strong>Sustainable Municipal Development Plan</strong> — policy & implementation roadmap for four municipalities.</li>
+            <li><strong>Participatory Governance Processes</strong> — collaboration with <strong>UNDP</strong> to design two innovative municipal projects.</li>
+            <li><strong>“Paraguay + Verde” Initiative</strong> — policy design for sustainable development & biodiversity (<strong>UNDP</strong> & <strong>UNEP</strong>).</li>
+            <li><strong>Sustainable Production Ideas Hackathon</strong> — advice on 10 innovation projects with <strong>WWF</strong> & <strong>USAID</strong>.</li>
+            <li><strong>Macroeconomic & Sectoral Reports</strong> — for two major financial institutions and the <strong>Latin American Reserve Fund (FLAR)</strong>.</li>
           </ul>
+          <div>
+            <span class="tag">UNDP</span>
+            <span class="tag">IDB</span>
+            <span class="tag">UNEP</span>
+            <span class="tag">WWF</span>
+            <span class="tag">USAID</span>
+            <span class="tag">FLAR</span>
+          </div>
         </article>
+
         <article class="card grid-4">
-          <div class="title"><strong>Tech stack</strong></div>
+          <div class="title"><strong>Tech Stack</strong></div>
           <ul class="list-clean">
             <li>R (tidyverse, fixest, did, did2s, ggplot2)</li>
             <li>Stata (reghdfe, csdid)</li>
@@ -148,14 +197,60 @@
           </ul>
         </article>
       </div>
+
+      <!-- Professional Experience -->
+      <div class="cards">
+        <article class="card grid-12">
+          <div class="title"><strong>Research Assistant (Part-time) — 2024–2025</strong> · Researcher Gabriela Villalba — University of Sussex, Brighton, England</div>
+          <ul class="list-clean">
+            <li>Project: <em>The Impact of the Mandatory High Quality Evaluation Policy on the Selection of Students into the Teaching Profession: Evidence from Colombia</em>.</li>
+            <li>Data collection and economic analysis; developed two scripts in Stata and R.</li>
+          </ul>
+        </article>
+
+        <article class="card grid-12">
+          <div class="title"><strong>Economic Consultant — 2023–2024</strong> · Mentu Consulting, Asunción, Paraguay</div>
+          <ul class="list-clean">
+            <li>Led circular economy promotion and sustainable municipal development projects.</li>
+            <li>Facilitated participatory governance processes with UNDP.</li>
+          </ul>
+        </article>
+
+        <article class="card grid-12">
+          <div class="title"><strong>Economic Analyst, Unit of Economics & Public Policies — 2022–2023</strong> · Mentu Consulting, Asunción, Paraguay</div>
+          <ul class="list-clean">
+            <li>Produced macroeconomic and sectoral reports (agriculture, livestock, automotive, industry, SMEs) for financial institutions and FLAR.</li>
+            <li>Directed economic impact assessments for sustainability initiatives (Paraguay + Verde; WWF–USAID hackathon).</li>
+          </ul>
+        </article>
+
+        <article class="card grid-12">
+          <div class="title"><strong>Assistant, Unit of Economics & Public Policies — 2021–2022</strong> · Mentu Consulting, Asunción, Paraguay</div>
+          <ul class="list-clean">
+            <li>Authored 400+ concise reports on global trends and implications for Paraguay.</li>
+            <li>Monitored international commodity markets and maintained forecasting databases.</li>
+          </ul>
+        </article>
+
+        <article class="card grid-12">
+          <div class="title"><strong>President, Economics Club — 2019–2021</strong> · National University of Asunción</div>
+          <ul class="list-clean">
+            <li>Founded and led the club; organized lectures, seminars, and a training course.</li>
+          </ul>
+        </article>
+      </div>
     </section>
 
     <!-- CONTACT -->
     <section id="contact">
+      <div class="section-kicker">Get in touch</div>
       <h2>Contact</h2>
-      <p>Email: <a class="inline" href="mailto:andres.romero@example.com">andres.romero@example.com</a></p>
-      <p>LinkedIn: <a class="inline" href="https://www.linkedin.com/">linkedin.com/in/andres-romero</a></p>
+      <p>Email: <a class="inline" href="mailto:v.a.romero-acosta@lse.ac.uk">v.a.romero-acosta@lse.ac.uk</a></p>
+      <p>LinkedIn: <a class="inline" href="https://www.linkedin.com/in/andresromero998/">linkedin.com/in/andresromero998</a></p>
       <p>CV: <a class="inline" href="cv/AndresRomero_CV.pdf">Download PDF</a></p>
+      <!-- Opcional: Teléfono y ubicación
+      <p>Phone: +44 7876 699410 · London, SE1 3AW</p>
+      -->
     </section>
 
     <footer class="footer">
