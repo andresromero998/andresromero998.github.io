@@ -12,7 +12,7 @@
   <!-- Flag Icons (AGREGADO) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7/css/flag-icons.min.css">
 
-  <style> 
+ <style> 
     :root{ --bg:#0b0c10; --panel:#111218; --text:#e6e8ef; --muted:#b7bcd1; --accent:#7dd3fc; --accent-2:#a78bfa; --ring:rgba(125,211,252,.45); --card:#0f1117; --shadow:0 10px 25px rgba(0,0,0,.35); --radius:16px; } 
     @media (prefers-color-scheme: light){ :root{ --bg:#f7f8fb; --panel:#ffffff; --text:#0b0c10; --muted:#525b76; --card:#ffffff; --shadow:0 10px 25px rgba(0,0,0,.08);} } 
     *{box-sizing:border-box} html,body{margin:0;padding:0} 
@@ -44,7 +44,22 @@
     a.inline{color:#a7c7ff;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.25)} 
     a.inline:hover{opacity:.9} 
     .section-kicker{font-size:.85rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:8px} 
-  </style> 
+
+    /* ---- FOTO PERFIL ---- */
+    .profile-pic {
+      width: 180px;       /* tamaño fijo de la foto */
+      border-radius: 16px; /* esquinas redondeadas */
+      display: block; 
+      margin: 0 auto;     /* centra la imagen */
+    }
+
+    @media(max-width: 600px) {
+      .profile-pic {
+        width: 120px;    /* más chica en pantallas móviles */
+      }
+    }
+</style>
+
 </head> 
 <body> 
   <header> 
@@ -65,9 +80,10 @@
     <!-- HERO --> 
     <section class="hero" id="top"> 
       <div> 
-        <h1> Political Economist | Public Policy Analyst</h1> 
+        <h1> Economist | Public Policy Analyst & Consultant </h1> 
 
         <!-- Párrafo modificado para banderas (NO se eliminó nada más) -->
+       <p> Political Economy | Causal Inference | Public Policy Evaluation  
         <p>📍 Based: 
           <span class="fi fi-py" title="Asuncion,Paraguay" style="margin-right:6px;"></span> Asuncion, Paraguay 
           → 
@@ -184,7 +200,7 @@
       <div class="title"><strong>Incidence of the Economic Complementation Agreement (ACE 35) on the commercial flow from Paraguay to Chile. 1997–2021</strong></div>
       <p>Evaluation of a trade agreement using the Gravity Model of International Trade.</p>
       <p class="list-clean">
-        <a class="inline" href="papers/Incidencia ACE 35.pdf" target="_blank" rel="noopener"> Complete paper</a>
+        <a class="inline" href="papers/Incidencia ACE 35.pdf" target="_blank" rel="noopener"> Full Paper</a>
       </p>
     </article>
   </div>
