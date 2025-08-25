@@ -46,18 +46,19 @@
     .section-kicker{font-size:.85rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:8px} 
 
     /* ---- FOTO PERFIL ---- */
-    .profile-pic {
-      width: 180px;       /* tamaño fijo de la foto */
-      border-radius: 16px; /* esquinas redondeadas */
-      display: block; 
-      margin: 0 auto;     /* centra la imagen */
-    }
+    /* ---- FOTO PERFIL (circular a la izquierda) ---- */
+.profile-pic{
+  width: 200px;            /* ajustá a gusto */
+  aspect-ratio: 1 / 1;     /* asegura proporción cuadrada */
+  border-radius: 50%;      /* círculo */
+  object-fit: cover;       /* centra/recorta */
+  border: 4px solid rgba(255,255,255,.15);
+  display: block;
+}
+@media (max-width: 600px){
+  .profile-pic{ width: 140px; }
+}
 
-    @media(max-width: 600px) {
-      .profile-pic {
-        width: 120px;    /* más chica en pantallas móviles */
-      }
-    }
 </style>
 
 </head> 
