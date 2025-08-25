@@ -1,346 +1,334 @@
-<!DOCTYPE html> 
-<html lang="en"> 
-<head> 
-  <meta charset="utf-8" /> 
-  <meta name="viewport" content="width=device-width, initial-scale=1" /> 
-  <title>Andrés Romero — Portfolio</title> 
-  <meta name="description" content="Andrés Romero — Economist | Political Economy | Causal Inference | Public Policy Evaluation" /> 
-  <link rel="preconnect" href="https://fonts.googleapis.com"> 
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"> 
-
-  <!-- Flag Icons (AGREGADO) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Andrés Romero — Portfolio</title>
+  <meta name="description" content="Andrés Romero — Economist | Political Economy | Causal Inference | Public Policy Evaluation" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <!-- Flag Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7/css/flag-icons.min.css">
 
- <style> 
-    :root{ --bg:#0b0c10; --panel:#111218; --text:#e6e8ef; --muted:#b7bcd1; --accent:#7dd3fc; --accent-2:#a78bfa; --ring:rgba(125,211,252,.45); --card:#0f1117; --shadow:0 10px 25px rgba(0,0,0,.35); --radius:16px; } 
-    @media (prefers-color-scheme: light){ :root{ --bg:#f7f8fb; --panel:#ffffff; --text:#0b0c10; --muted:#525b76; --card:#ffffff; --shadow:0 10px 25px rgba(0,0,0,.08);} } 
-    *{box-sizing:border-box} html,body{margin:0;padding:0} 
-    body{font-family:Inter,system-ui; color:var(--text); background:var(--bg); line-height:1.6;} 
-    .container{max-width:1000px;margin:0 auto;padding:28px 18px} 
-    header{position:sticky;top:0;backdrop-filter:saturate(160%) blur(8px);background:color-mix(in oklab,var(--bg) 70%,transparent);border-bottom:1px solid rgba(255,255,255,.06);z-index:50} 
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:12px} 
-    .brand{display:flex;align-items:center;gap:10px;font-weight:800} 
-    .dot{width:10px;height:10px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 0 0 6px rgba(125,211,252,.15)} 
-    nav a{color:var(--muted);text-decoration:none;margin:0 10px;font-weight:600} 
-    nav a:hover{color:var(--text)} 
-    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;padding:48px 0} 
-    .hero h1{font-family:"Playfair Display",serif;font-size:clamp(32px,4.5vw,56px);line-height:1.05;margin:0} 
-    .hero p{font-size:clamp(14px,1.5vw,18px);color:var(--muted);margin:16px 0 24px} 
-    .cta{display:flex;gap:12px;flex-wrap:wrap} 
-    .btn{border:0;border-radius:999px;padding:12px 18px;font-weight:700;cursor:pointer;transition:.2s} 
-    .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#0b0c10;box-shadow:0 8px 20px var(--ring)} 
-    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.15);color:var(--text)} 
-    .headshot img{width:100%;border-radius:var(--radius)} 
-    section{padding:32px 0} h2{font-size:clamp(22px,2.5vw,30px);margin:0 0 18px;font-weight:800} 
-    .cards{display:grid;grid-template-columns:repeat(12,1fr);gap:18px} 
-    .card{grid-column:span 12;background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)} 
-    .grid-6{grid-column:span 6} .grid-4{grid-column:span 4} .grid-8{grid-column:span 8} 
-    @media(max-width:860px){.hero{grid-template-columns:1fr}.grid-6,.grid-4,.grid-8{grid-column:span 12}} 
-    .list-clean{list-style:none;padding-left:0;margin:0} 
-    .list-clean li{margin:10px 0;color:var(--muted)} 
-    .tag{display:inline-block;border:1px solid rgba(255,255,255,.15);padding:4px 10px;border-radius:999px;font-size:.85rem;margin-right:6px;color:var(--text)} 
-    .footer{padding:30px 0;border-top:1px solid rgba(255,255,255,.08);margin-top:28px;color:var(--muted);font-size:14px} 
-    a.inline{color:#a7c7ff;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.25)} 
-    a.inline:hover{opacity:.9} 
-    .section-kicker{font-size:.85rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:8px} 
+  <style>
+    :root{
+      --bg:#0b0c10; --panel:#111218; --text:#e6e8ef; --muted:#b7bcd1;
+      --accent:#7dd3fc; --accent-2:#a78bfa; --ring:rgba(125,211,252,.45);
+      --card:#0f1117; --shadow:0 10px 25px rgba(0,0,0,.35); --radius:16px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{ --bg:#f7f8fb; --panel:#ffffff; --text:#0b0c10; --muted:#525b76; --card:#ffffff; --shadow:0 10px 25px rgba(0,0,0,.08); }
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{font-family:Inter,system-ui; color:var(--text); background:var(--bg); line-height:1.6;}
 
-    /* ---- FOTO PERFIL ---- */
-    /* ---- FOTO PERFIL (circular a la izquierda) ---- */
-.profile-pic{
-  width: 200px;            /* ajustá a gusto */
-  aspect-ratio: 1 / 1;     /* asegura proporción cuadrada */
-  border-radius: 50%;      /* círculo */
-  object-fit: cover;       /* centra/recorta */
-  border: 4px solid rgba(255,255,255,.15);
-  display: block;
-}
-@media (max-width: 600px){
-  .profile-pic{ width: 140px; }
-}
+    .container{max-width:1000px;margin:0 auto;padding:28px 18px}
 
-</style>
+    header{position:sticky;top:0;backdrop-filter:saturate(160%) blur(8px);
+      background:color-mix(in oklab,var(--bg) 70%,transparent);
+      border-bottom:1px solid rgba(255,255,255,.06); z-index:50}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800}
+    .dot{width:10px;height:10px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 0 0 6px rgba(125,211,252,.15)}
+    nav a{color:var(--muted);text-decoration:none;margin:0 10px;font-weight:600}
+    nav a:hover{color:var(--text)}
 
-</head> 
-<body> 
-  <header> 
-    <div class="container nav"> 
-      <div class="brand"><span class="dot"></span> Andrés Romero</div> 
-      <nav aria-label="primary"> 
-        <a href="#interests">Interests</a> 
-        <a href="#profile">Profile</a> 
-        <a href="#studies">Studies</a> 
-        <a href="#research">Research</a> 
-        <a href="#work">Work Experience</a> 
-        <a href="#contact">Contact</a> 
-      </nav> 
-    </div> 
-  </header> 
+    .hero{display:grid;grid-template-columns:0.9fr 1.1fr;gap:28px;align-items:center;padding:48px 0}
+    .hero h1{font-family:"Playfair Display",serif;font-size:clamp(32px,4.5vw,56px);line-height:1.05;margin:0}
+    .hero p{font-size:clamp(14px,1.5vw,18px);color:var(--muted);margin:16px 0 24px}
+    .cta{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{border:0;border-radius:999px;padding:12px 18px;font-weight:700;cursor:pointer;transition:.2s}
+    .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#0b0c10;box-shadow:0 8px 20px var(--ring)}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.15);color:var(--text)}
 
-  <main class="container"> 
-    <!-- HERO --> 
-    <section class="hero" id="top"> 
-      <div> 
-        <h1> Andres Romero  </h1> 
+    .headshot{justify-self:start}
+    .headshot img{width:100%;border-radius:var(--radius)}
 
-        <!-- Párrafo modificado para banderas (NO se eliminó nada más) -->
-       <p>Economist specialized in political economy, quantitative analysis, and public policy evaluation. Experienced in economic consulting and policy analysis for international organizations and multinational companies across South America.</p> 
-          <p>Currently completing an MSc in Political Science and Political Economy at the London School of Economics (LSE), with expertise in econometric methods, game theory, causal inference, and impact evaluation of policies and programs.</p> 
-        <p> 
-          <span class="fi fi-py" title="Asuncion,Paraguay" style="margin-right:6px;"></span> Asuncion, Paraguay 
-          → 
-          <span class="fi fi-gb" title="United Kingdom" style="margin-left:6px;"></span> London, Uk
-        </p> 
+    section{padding:32px 0}
+    h2{font-size:clamp(22px,2.5vw,30px);margin:0 0 18px;font-weight:800}
 
-        <p>. </p> 
-        <div class="cta"> 
-          <a class="btn btn-primary" href="#research">See Research</a> 
-          <a class="btn btn-ghost" href="#work">Work Experience</a> 
-          <a class="btn btn-ghost" href="#contact">Contact</a> 
-        </div> 
-      </div> 
-     <div class="headshot"> 
-  <img src="Andres%204.jpg" alt="Andrés Romero" loading="lazy" class="profile-pic"/> 
-</div>
+    .cards{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+    .card{grid-column:span 12;background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .grid-4{grid-column:span 4}
+    .grid-6{grid-column:span 6}
+    .grid-8{grid-column:span 8}
+    .grid-12{grid-column:span 12}
 
-    </section> 
+    @media(max-width:860px){
+      .hero{grid-template-columns:1fr}
+      .grid-4,.grid-6,.grid-8,.grid-12{grid-column:span 12}
+    }
 
-    <!-- AREAS OF INTEREST --> 
-    <section id="interests"> 
-      <div class="section-kicker">Areas of Interest</div> 
-      <h2>Research Interests</h2> 
-      <p> Political Economy ·Informal markets · Underground economy · Organized crime · Corruption · Circular economy · Latin America · MERCOSUR </p> 
-    </section> 
+    .list-clean{list-style:none;padding-left:0;margin:0}
+    .list-clean li{margin:10px 0;color:var(--muted)}
+    .tag{display:inline-block;border:1px solid rgba(255,255,255,.15);padding:4px 10px;border-radius:999px;font-size:.85rem;margin-right:6px;color:var(--text)}
+    .footer{padding:30px 0;border-top:1px solid rgba(255,255,255,.08);margin-top:28px;color:var(--muted);font-size:14px}
+    a.inline{color:#a7c7ff;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.25)}
+    a.inline:hover{opacity:.9}
+    .section-kicker{font-size:.85rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:8px}
 
-    <!-- PROFILE --> 
-    <section id="profile"> 
-      <div class="section-kicker">About</div> 
-      <h2>Profile</h2> 
-      <div class="cards"> 
-        <article class="card"> 
-          
-          <div> 
-            <span class="tag">Causal Inference</span> 
-            <span class="tag">Econometrics</span> 
-            <span class="tag">Quantitative Text Analysis</span> 
-            <span class="tag">R / Stata </span> 
-            <span class="tag">LaTeX / Git</span> 
-          </div> 
-        </article> 
-      </div> 
-    </section> 
+    /* ---- FOTO PERFIL (circular) ---- */
+    .profile-pic{
+      width:200px; aspect-ratio:1/1; border-radius:50%;
+      object-fit:cover; border:4px solid rgba(255,255,255,.15); display:block;
+    }
+    @media (max-width:600px){ .profile-pic{width:140px;} }
+  </style>
+</head>
 
-    <!-- STUDIES --> 
-    <section id="studies"> 
-      <div class="section-kicker">Education</div> 
-      <h2>Studies</h2> 
-      <div class="cards"> 
-        <article class="card grid-8"> 
-          <div class="title"><strong>MSc Political Science & Political Economy (Candidate, 2024–2025)</strong> — London School of Economics and Political Science (LSE), England</div> 
-          <ul class="list-clean"> 
-            <li>Courses: Quantitative Analysis for Political Science · Game Theory for Political Science · Political Economy: Current Issues · Behavioural Public Policy · Quantitative Text Analysis · Causal Inference for Observational & Experimental Studies.</li> 
-            <li></li> 
-          </ul> 
-          <div style="margin-top:10px"> 
-            <span class="tag">DiD / Event Study / SCM</span> 
-            <span class="tag">R / Stata</span> 
-            <span class="tag">Impact Evaluation</span> 
-          </div> 
-        </article> 
-        <article class="card grid-4"> 
-          <div class="title"><strong>Postgraduate Certificate in Project Management (2023)</strong> — San Ignacio del Loyola Post Graduate School, Paraguay</div> 
-          <ul class="list-clean"><li>Specialization: PMI & Agile Approaches.</li></ul> 
-        </article> 
-        <article class="card grid-12"> 
-          <div class="title"><strong>BSc in Economics (2018–2022)</strong> — National University of Asunción, Paraguay</div> 
-          <ul class="list-clean"> 
-            <li>Distinguished Graduate.</li> 
-            <li>Thesis: <em>Incidence of ACE 35 on Paraguay–Chile trade (1997–2021)</em>.</li> 
-          </ul> 
-        </article> 
-      </div> 
-    </section> 
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand"><span class="dot"></span> Andrés Romero</div>
+      <nav aria-label="primary">
+        <a href="#interests">Interests</a>
+        <a href="#profile">Profile</a>
+        <a href="#studies">Studies</a>
+        <a href="#research">Research</a>
+        <a href="#work">Work Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <!-- RESEARCH --> 
-   <!-- RESEARCH -->
-<section id="research">
-  <div class="section-kicker">Selected Work</div>
-  <h2>Research</h2>
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <!-- FOTO A LA IZQUIERDA -->
+      <div class="headshot">
+        <!-- Sugerencia: renombra el archivo a andres4.jpg y cambia la ruta. Si usas el original con espacio, mantené Andres%204.jpg -->
+        <img src="Andres%204.jpg" alt="Andrés Romero" loading="lazy" class="profile-pic" />
+      </div>
 
-  <div class="cards">
-    <!-- Paper 1 -->
-    <article class="card grid-6">
-      <div class="title"><strong>Organised Crime, Criminal Violence, and State Capacity</strong></div>
-      <p>Evidence from Paraguay’s Frontier with Brazil.</p>
-      <p class="list-clean">
-        <a class="inline" href="papers/Abstract_Github.pdf" target="_blank" rel="noopener">Abstract</a> ·
-        <a class="inline" href="papers/infographics.pdf" target="_blank" rel="noopener">Infographics</a>
-      </p>
-    </article>
+      <!-- TEXTO A LA DERECHA -->
+      <div>
+        <h1>Andrés Romero</h1>
+        <p>Economist specialized in political economy, quantitative analysis, and public policy evaluation. Experienced in economic consulting and policy analysis for international organizations and multinational companies across South America.</p>
+        <p>Currently completing an MSc in Political Science and Political Economy at the London School of Economics (LSE), with expertise in econometric methods, game theory, causal inference, and impact evaluation of policies and programs.</p>
+        <p>
+          <span class="fi fi-py" title="Asunción, Paraguay" style="margin-right:6px;"></span> Asunción, Paraguay →
+          <span class="fi fi-gb" title="United Kingdom" style="margin-left:6px;"></span> London, UK
+        </p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#research">See Research</a>
+          <a class="btn btn-ghost" href="#work">Work Experience</a>
+          <a class="btn btn-ghost" href="#contact">Contact</a>
+        </div>
+      </div>
+    </section>
 
-    <!-- Paper 2 -->
-    <article class="card grid-6">
-      <div class="title"><strong>Prison Overcrowding & Attack Risk</strong></div>
-      <p>Panel probability models relating prison strain to organised-crime–linked attacks in Brazil; results reported as odds ratios and average marginal effects with robust SEs.</p>
-      <p class="list-clean">
-        <a class="inline" href="papers/Overcrowded_Prison_Conditions.pdf" target="_blank" rel="noopener">Working Paper</a>
-      </p>
-    </article>
+    <!-- AREAS OF INTEREST -->
+    <section id="interests">
+      <div class="section-kicker">Areas of Interest</div>
+      <h2>Research Interests</h2>
+      <p>Political Economy · Informal markets · Underground economy · Organized crime · Corruption · Circular economy · Latin America · MERCOSUR</p>
+    </section>
 
-    <!-- Paper 3 -->
-    <article class="card grid-6">
-      <div class="title"><strong>Causal Replication and Reappraisal of Téllez (2022)</strong></div>
-      <p>Replication and reappraisal of Juan Téllez (2021), <em>Land, Opportunism, and Displacement in Civil Wars</em>, applying modern estimators (DiD, Callaway &amp; Sant’Anna, Sun &amp; Abraham, IFE/MC) and extending data for Colombia (2007–2015).</p>
-      <p class="list-clean">
-        <a class="inline" href="papers/Causal_Replication_Tellez_2022.pdf" target="_blank" rel="noopener">Full Paper (PDF)</a>
-      </p>
-    </article>
+    <!-- PROFILE -->
+    <section id="profile">
+      <div class="section-kicker">About</div>
+      <h2>Profile</h2>
+      <div class="cards">
+        <article class="card grid-12">
+          <p>Economist specialized in political economy, quantitative analysis, and public policy evaluation. Experience across UN agencies, development projects, and private-sector consulting in South America.</p>
+          <div>
+            <span class="tag">Causal Inference</span>
+            <span class="tag">Econometrics</span>
+            <span class="tag">Quantitative Text Analysis</span>
+            <span class="tag">R / Stata</span>
+            <span class="tag">LaTeX / Git</span>
+          </div>
+        </article>
+      </div>
+    </section>
 
-    <!-- Paper 4 -->
-    <article class="card grid-6">
-      <div class="title"><strong>Incidence of the Economic Complementation Agreement (ACE 35) on the commercial flow from Paraguay to Chile. 1997–2021</strong></div>
-      <p>Evaluation of a trade agreement using the Gravity Model of International Trade.</p>
-      <p class="list-clean">
-        <a class="inline" href="papers/Incidencia ACE 35.pdf" target="_blank" rel="noopener"> Full Paper</a>
-      </p>
-    </article>
-  </div>
-</section>
-   <!-- Paper 5 -->
-    <article class="card grid-6">
-      <div class="title"><strong>The Impact of LGBT Civil Union
-Legislation on Right-Wing Populist
-Support in Europe</strong></div>
-      <p>Political Economy- Populism- Dif-in-Dif.</p>
-      <p class="list-clean">
-        <a class="inline" href="papers/The_Impact_of_LGBT_Civil_Union_Legislation_on_Right_Wing_Populist_Support_in_Europe__Copy_.pdf" target="_blank" rel="noopener"> Full Paper</a>
-      </p>
-    </article>
-  </div>
-</section>
+    <!-- STUDIES -->
+    <section id="studies">
+      <div class="section-kicker">Education</div>
+      <h2>Studies</h2>
+      <div class="cards">
+        <article class="card grid-8">
+          <div class="title"><strong>MSc Political Science & Political Economy (Candidate, 2024–2025)</strong> — London School of Economics and Political Science (LSE), England</div>
+          <ul class="list-clean">
+            <li>Courses: Quantitative Analysis for Political Science · Game Theory for Political Science · Political Economy: Current Issues · Behavioural Public Policy · Quantitative Text Analysis · Causal Inference for Observational & Experimental Studies.</li>
+          </ul>
+          <div style="margin-top:10px">
+            <span class="tag">DiD / Event Study / SCM</span>
+            <span class="tag">R / Stata</span>
+            <span class="tag">Impact Evaluation</span>
+          </div>
+        </article>
+        <article class="card grid-4">
+          <div class="title"><strong>Postgraduate Certificate in Project Management (2023)</strong> — San Ignacio del Loyola Post Graduate School, Paraguay</div>
+          <ul class="list-clean"><li>Specialization: PMI & Agile Approaches.</li></ul>
+        </article>
+        <article class="card grid-12">
+          <div class="title"><strong>BSc in Economics (2018–2022)</strong> — National University of Asunción, Paraguay</div>
+          <ul class="list-clean">
+            <li>Distinguished Graduate.</li>
+            <li>Thesis: <em>Incidence of ACE 35 on Paraguay–Chile trade (1997–2021)</em>.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
+    <!-- RESEARCH -->
+    <section id="research">
+      <div class="section-kicker">Selected Work</div>
+      <h2>Research</h2>
 
-    <!-- WORK EXPERIENCE --> 
-    <section id="work"> 
-      <div class="section-kicker">Career</div> 
-      <h2>Work Experience</h2> 
+      <div class="cards">
+        <article class="card grid-6">
+          <div class="title"><strong>Organised Crime, Criminal Violence, and State Capacity</strong></div>
+          <p>Evidence from Paraguay’s frontier with Brazil.</p>
+          <p class="list-clean">
+            <a class="inline" href="papers/Abstract_Github.pdf" target="_blank" rel="noopener">Abstract</a> ·
+            <a class="inline" href="papers/infographics.pdf" target="_blank" rel="noopener">Infographics</a>
+          </p>
+        </article>
 
-      <!-- International Organisations & Projects --> 
-      <div class="cards"> 
-        <article class="card grid-8"> 
-          <div class="title"><strong>International Organisations & Projects</strong></div> 
-          <ul class="list-clean"> 
-            <li><strong>Circular Economy Promotion Project</strong> — strategies to transition local industries to sustainability (with Moisés Bertoni Foundation & <strong>IDB</strong>).</li> 
-            <li><strong>Sustainable Municipal Development Plan</strong> — policy & implementation roadmap for four municipalities.(<strong>International and Ibero-American Foundation for Administration and Public Policies) </strong></li> 
-            <li><strong>Participatory Governance Processes</strong> — collaboration with <strong>UNDP</strong> to design two innovative municipal projects.</li> 
-            <li><strong>“Paraguay + Verde” Initiative</strong> — policy design for sustainable development & biodiversity (<strong>UNDP</strong> & <strong>UNEP</strong>).</li> 
-            <li><strong>Sustainable Production Ideas Hackathon</strong> — advice on 10 innovation projects with <strong>WWF</strong> & <strong>USAID</strong>.</li> 
-            <li><strong>Macroeconomic & Sectoral Reports</strong> — for two major financial institutions and the <strong>Latin American Reserve Fund (FLAR)</strong>.</li> 
-          </ul> 
-          <div> 
-            <span class="tag">UNDP</span> 
-            <span class="tag">IDB</span> 
-            <span class="tag">UNEP</span> 
-            <span class="tag">WWF</span> 
-            <span class="tag">USAID</span> 
-            <span class="tag">FLAR</span> 
-          </div> 
-        </article> 
+        <article class="card grid-6">
+          <div class="title"><strong>Prison Overcrowding & Attack Risk</strong></div>
+          <p>Panel probability models relating prison strain to organised-crime–linked attacks in Brazil; results as odds ratios and AMEs.</p>
+          <p class="list-clean">
+            <a class="inline" href="papers/Overcrowded_Prison_Conditions.pdf" target="_blank" rel="noopener">Working Paper</a>
+          </p>
+        </article>
 
-        <article class="card grid-4"> 
-          <div class="title"><strong>Tech Stack</strong></div> 
-          <ul class="list-clean"> 
-            <li>R (tidyverse, fixest, did, did2s, ggplot2)</li> 
-            <li>Stata (reghdfe, csdid)</li> 
-            <li>LaTeX, Quarto, Markdown, Git</li> 
-            <li>Microsoft Office </li> 
-            <div class="title"><strong>In training</strong></div> 
-            <li>Python (pandas)</li> 
-          </ul> 
-        </article> 
-      </div> 
+        <article class="card grid-6">
+          <div class="title"><strong>Causal Replication and Reappraisal of Téllez (2022)</strong></div>
+          <p>Reappraisal of <em>Land, Opportunism, and Displacement in Civil Wars</em> with modern DiD estimators and extended Colombian data (2007–2015).</p>
+          <p class="list-clean">
+            <a class="inline" href="papers/Causal_Replication_Tellez_2022.pdf" target="_blank" rel="noopener">Full Paper (PDF)</a>
+          </p>
+        </article>
 
-      <!--  Other Professional Experience --> 
-      <div class="cards"> 
-        <article class="card grid-12"> 
-          <div class="title"><strong>Research Assistant (Part-time) — 2024–2025</strong> · Researcher Gabriela Villalba — University of Sussex, Brighton, England</div> 
-          <ul class="list-clean"> 
-            <li>Project: <em>The Impact of the Mandatory High Quality Evaluation Policy on the Selection of Students into the Teaching Profession: Evidence from Colombia</em>.</li> 
-            <li>Data collection and economic analysis; developed two scripts in Stata and R.</li> 
-          </ul> 
-        </article> 
+        <article class="card grid-6">
+          <div class="title"><strong>Incidence of ACE 35 on Paraguay–Chile Trade (1997–2021)</strong></div>
+          <p>Evaluation of a trade agreement using the Gravity Model of International Trade.</p>
+          <p class="list-clean">
+            <a class="inline" href="papers/papers/IncidenciaACE35.pdf" target="_blank" rel="noopener">Full Paper</a>
+          </p>
+        </article>
 
-        <article class="card grid-12"> 
-          <div class="title"><strong>Economic Consultant — 2023–2024</strong> · Mentu Consulting, Asunción, Paraguay</div> 
-          <ul class="list-clean"> 
-            <li>Led circular economy promotion and sustainable municipal development projects.</li> 
-            <li>Facilitated participatory governance processes with UNDP.</li> 
-          </ul> 
-        </article> 
+        <article class="card grid-6">
+          <div class="title"><strong>The Impact of LGBT Civil Union Legislation on Right-Wing Populist Support in Europe</strong></div>
+          <p>Political economy of populism — Difference-in-Differences.</p>
+          <p class="list-clean">
+            <a class="inline" href="papers/LGBTEurope.pdf" rel="noopener">Full Paper</a>
+          </p>
+        </article>
+      </div>
+    </section>
 
-        <article class="card grid-12"> 
-          <div class="title"><strong>Economic Analyst, Unit of Economics & Public Policies — 2022–2023</strong> · Mentu Consulting, Asunción, Paraguay</div> 
-          <ul class="list-clean"> 
-            <li>Produced macroeconomic and sectoral reports (agriculture, livestock, automotive, industry, SMEs) for financial institutions and FLAR.</li> 
-            <li>Directed economic impact assessments for sustainability initiatives (Paraguay + Verde; WWF–USAID hackathon).</li> 
-          </ul> 
-        </article> 
+    <!-- WORK EXPERIENCE -->
+    <section id="work">
+      <div class="section-kicker">Career</div>
+      <h2>Work Experience</h2>
 
-        <article class="card grid-12"> 
-          <div class="title"><strong>Assistant, Unit of Economics & Public Policies — 2021–2022</strong> · Mentu Consulting, Asunción, Paraguay</div> 
-          <ul class="list-clean"> 
-            <li>Authored 400+ concise reports on global trends and implications for Paraguay.</li> 
-            <li>Monitored international commodity markets and maintained forecasting databases.</li> 
-          </ul> 
-        </article> 
+      <div class="cards">
+        <article class="card grid-8">
+          <div class="title"><strong>International Organisations & Projects</strong></div>
+          <ul class="list-clean">
+            <li><strong>Circular Economy Promotion Project</strong> — strategies to transition industries to sustainability (with Moisés Bertoni Foundation & <strong>IDB</strong>).</li>
+            <li><strong>Sustainable Municipal Development Plan</strong> — policy & implementation roadmap for four municipalities (<strong>FIIAPP</strong>).</li>
+            <li><strong>Participatory Governance Processes</strong> — collaboration with <strong>UNDP</strong> to design two innovative municipal projects.</li>
+            <li><strong>“Paraguay + Verde” Initiative</strong> — policy design for sustainable development & biodiversity (<strong>UNDP</strong> & <strong>UNEP</strong>).</li>
+            <li><strong>Sustainable Production Ideas Hackathon</strong> — advice on 10 innovation projects with <strong>WWF</strong> & <strong>USAID</strong>.</li>
+            <li><strong>Macroeconomic & Sectoral Reports</strong> — for financial institutions and the <strong>Latin American Reserve Fund (FLAR)</strong>.</li>
+          </ul>
+          <div>
+            <span class="tag">UNDP</span><span class="tag">IDB</span><span class="tag">UNEP</span>
+            <span class="tag">WWF</span><span class="tag">USAID</span><span class="tag">FLAR</span>
+          </div>
+        </article>
 
-        <article class="card grid-12"> 
-          <div class="title"><strong>President, Economics Club — 2019–2021</strong> · National University of Asunción</div> 
-          <ul class="list-clean"> 
-            <li>Founded and led the club; organized lectures, seminars, and a training course.</li> 
-          </ul> 
-        </article> 
-      </div> 
-    </section> 
-     <section id="awards">
+        <article class="card grid-4">
+          <div class="title"><strong>Tech Stack</strong></div>
+          <ul class="list-clean">
+            <li>R (tidyverse, fixest, did, did2s, ggplot2)</li>
+            <li>Stata (reghdfe, csdid)</li>
+            <li>LaTeX, Quarto, Markdown, Git</li>
+            <li>Microsoft Office</li>
+            <div class="title" style="margin-top:8px;"><strong>In training</strong></div>
+            <li>Python (pandas)</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="cards">
+        <article class="card grid-12">
+          <div class="title"><strong>Research Assistant (Part-time) — 2024–2025</strong> · Gabriela Villalba — University of Sussex, Brighton, England</div>
+          <ul class="list-clean">
+            <li>Project: <em>The Impact of the Mandatory High Quality Evaluation Policy on the Selection of Students into the Teaching Profession: Evidence from Colombia</em>.</li>
+            <li>Data collection and economic analysis; developed scripts in Stata and R.</li>
+          </ul>
+        </article>
+
+        <article class="card grid-12">
+          <div class="title"><strong>Economic Consultant — 2023–2024</strong> · Mentu Consulting, Asunción, Paraguay</div>
+          <ul class="list-clean">
+            <li>Led circular economy promotion and sustainable municipal development projects.</li>
+            <li>Facilitated participatory governance processes with UNDP.</li>
+          </ul>
+        </article>
+
+        <article class="card grid-12">
+          <div class="title"><strong>Economic Analyst, Unit of Economics & Public Policies — 2022–2023</strong> · Mentu Consulting, Asunción, Paraguay</div>
+          <ul class="list-clean">
+            <li>Produced macroeconomic and sectoral reports for financial institutions and FLAR.</li>
+            <li>Directed impact assessments for sustainability initiatives (Paraguay + Verde; WWF–USAID hackathon).</li>
+          </ul>
+        </article>
+
+        <article class="card grid-12">
+          <div class="title"><strong>President, Economics Club — 2019–2021</strong> · National University of Asunción</div>
+          <ul class="list-clean">
+            <li>Founded and led the club; organized lectures, seminars, and a training course.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- AWARDS -->
+    <section id="awards">
       <div class="section-kicker">Recognition</div>
       <h2>Awards & Accomplishments</h2>
       <div class="cards">
         <article class="card grid-12">
           <ul class="list-clean">
-            <li><strong>Invited speaker</strong> at the <strong>United Nations ECOSOC Partnership Forum 2024</strong>, presenting on “Circular Economy for SDGs”.</li>
-            <li><strong>Expositor</strong> at the XV Young Researchers Conference of the National University of Asunción, organised by the General Directorate of Scientific and Technological Research (UNA), virtual mode, 2021. Research: <em>“Analysis of the Evolution of Paraguay’s Foreign Trade with Mercosur. Period 1991–2020.”</em></li>
-            <li><strong>Elected participant</strong> for the <strong>MIT Lebanon Challenge Hackathon</strong>, 2020.</li>
-            <li><strong>Founding member</strong> of the Economic Club of the National University of Asunción, 2019.</li>
-            <li><strong>Municipal Youth Award</strong> — “Outstanding Youth of the Year in Academic Merits”, 2018.</li>
-            <li><strong>Municipal Youth Award</strong> — “Outstanding Youth of the Year in Civic Merits”, 2016.</li>
+            <li><strong>Invited speaker</strong> at the <strong>United Nations ECOSOC Partnership Forum 2024</strong>, “Circular Economy for SDGs”.</li>
+            <li><strong>Presenter</strong> at XV Young Researchers Conference (UNA), 2021 — <em>Analysis of the Evolution of Paraguay’s Foreign Trade with Mercosur (1991–2020)</em>.</li>
+            <li><strong>Elected participant</strong> of the MIT Lebanon Challenge Hackathon, 2020.</li>
+            <li><strong>Founding member</strong> of the Economic Club, UNA, 2019.</li>
+            <li><strong>Municipal Youth Award</strong> — Academic Merits, 2018.</li>
+            <li><strong>Municipal Youth Award</strong> — Civic Merits, 2016.</li>
             <li><strong>Most Comprehensive Student</strong>, International College, 2016.</li>
           </ul>
         </article>
       </div>
     </section>
 
-    <!-- CONTACT --> 
-    <section id="contact"> 
-      <div class="section-kicker">Get in touch</div> 
-      <h2>Contact</h2> 
-      <p>Email: <a class="inline" href="mailto:v.a.romero-acosta@lse.ac.uk">v.a.romero-acosta@lse.ac.uk</a></p> 
-      <p>LinkedIn: <a class="inline" href="https://www.linkedin.com/in/andresromero998/">linkedin.com/in/andresromero998</a></p> 
-      <p>CV: <a class="inline" href="cv/AndresRomero_CV.pdf">Download PDF</a></p> 
-      <!-- Opcional: Teléfono y ubicación 
-      <p>Phone: +44 7876 699410 · London, SE1 3AW</p> 
-      --> 
-    </section> 
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-kicker">Get in touch</div>
+      <h2>Contact</h2>
+      <p>Email: <a class="inline" href="mailto:v.a.romero-acosta@lse.ac.uk">v.a.romero-acosta@lse.ac.uk</a></p>
+      <p>LinkedIn: <a class="inline" href="https://www.linkedin.com/in/andresromero998/">linkedin.com/in/andresromero998</a></p>
+      <p>CV: <a class="inline" href="cv/AndresRomero_CV.pdf">Download PDF</a></p>
+    </section>
 
-    <footer class="footer"> 
-      <span>© <span id="y"></span> Andrés Romero — Built with a single HTML file</span> 
-    </footer> 
-  </main> 
+    <footer class="footer">
+      <span>© <span id="y"></span> Andrés Romero — Built with a single HTML file</span>
+    </footer>
+  </main>
 
-  <script> 
-    document.getElementById('y').textContent = new Date().getFullYear(); 
-  </script> 
-</body> 
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
 </html>
 
 
