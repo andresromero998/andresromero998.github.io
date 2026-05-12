@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Andrés Romero — Portfolio</title>
-  <meta name="description" content="Andrés Romero —Economist | MSc Political Science & Political Economy | Quantitative Analysis | Policy Research & Impact Evaluation" />
+  <meta name="description" content="Andrés Romero — Economist | Political Economy | Causal Inference | Public Policy Evaluation" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
@@ -71,10 +71,37 @@
 
     /* ---- FOTO PERFIL (circular) ---- */
     .profile-pic{
-      width:100px; aspect-ratio:1/1; border-radius:50%;
-      object-fit:cover; border:4px solid rgba(255,255,255,.15); display:block;
+      width:75px; aspect-ratio:1/1; border-radius:50%;
+      object-fit:cover; border:3px solid rgba(255,255,255,.15); display:block;
     }
-    @media (max-width:600px){ .profile-pic{width:80px;} }
+    @media (max-width:600px){ .profile-pic{width:60px;} }
+
+    /* ---- RESEARCH subsections ---- */
+    .research-sub{ margin-bottom:32px; }
+    .research-sub-title{
+      font-size:.8rem; letter-spacing:.1em; text-transform:uppercase;
+      color:var(--accent); font-weight:700; margin:0 0 12px;
+      padding-bottom:6px; border-bottom:1px solid rgba(125,211,252,.2);
+    }
+    .research-cols{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    @media(max-width:700px){ .research-cols{ grid-template-columns:1fr; } }
+
+    /* ---- WORK as timeline list ---- */
+    .work-list{ list-style:none; padding:0; margin:0; }
+    .work-item{
+      display:grid; grid-template-columns:140px 1fr; gap:16px 24px;
+      padding:18px 0; border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .work-item:last-child{ border-bottom:none; }
+    .work-date{ font-size:.8rem; color:var(--muted); padding-top:3px; text-align:right; }
+    .work-body strong{ color:var(--text); }
+    .work-body .work-org{ color:var(--accent); font-size:.85rem; margin:2px 0 6px; }
+    .work-body p{ color:var(--muted); font-size:.88rem; margin:4px 0; }
+    .work-body .work-tags{ margin-top:8px; }
+    @media(max-width:600px){
+      .work-item{ grid-template-columns:1fr; gap:4px; }
+      .work-date{ text-align:left; }
+    }
   </style>
 </head>
 
@@ -101,10 +128,8 @@
 
       <div>
         <h1>Andrés Romero</h1>
-        <p>Economist with emphasis in political economy, quantitative analysis, and impact evaluation of public policies and social programs . Experienced in economic consulting and policy analysis for international organizations and multinational companies, delivering rigorous evidence to support strategic decision making across Latin America and the United Kingdom. 
-
-<p>I specialise in impact evaluation using advanced econometric methods in political and social science, with a strong emphasis on causal inference and observational methods.</p>
-        <p>.</p>
+        <p>Economist with emphasis in political economy, quantitative analysis, and impact evaluation of public policies and social programs. Experienced in economic consulting and policy analysis for international organizations and multinational companies, delivering rigorous evidence to support strategic decision-making across Latin America and the United Kingdom.</p>
+        <p>I specialise in impact evaluation using advanced econometric methods in political and social science, with a strong emphasis on causal inference and observational methods.</p>
         <p>
           <span class="fi fi-py" title="Asunción, Paraguay" style="margin-right:6px;"></span> Asunción, Paraguay →
           <span class="fi fi-gb" title="United Kingdom" style="margin-left:6px;"></span> London, UK
@@ -159,67 +184,82 @@
       <div class="section-kicker">Selected Work</div>
       <h2>Research</h2>
 
-      <div class="cards">
-        <article class="card grid-6">
-          <div class="title"><strong>Organised Crime, Criminal Violence, and State Capacity</strong></div>
-          <p>Evidence from Paraguay's frontier with Brazil.</p>
-          <p class="list-clean">
-            <a class="inline" href="papers/Abstract_Github.pdf" target="_blank" rel="noopener">Abstract</a> ·
-            <a class="inline" href="papers/infographics.pdf" target="_blank" rel="noopener">Infographics</a>.
-            <a class="inline" href="papers/42433_GV499 (2).pdf" target="_blank" rel="noopener">Full Paper</a>
-          </p>
-        </article>
+      <!-- SUBSECTION 1: Quantitative & Causal Inference -->
+      <div class="research-sub">
+        <div class="research-sub-title">Quantitative &amp; Causal Inference</div>
+        <div class="research-cols">
 
-        <article class="card grid-6">
-          <div class="title"><strong>Prison Overcrowding & Attack Risk</strong></div>
-          <p>Panel probability models relating prison strain to organised-crime–linked attacks in Brazil; results as odds ratios and AMEs.</p>
-          <p class="list-clean">
-            <a class="inline" href="papers/Overcrowded_Prison_Conditions.pdf" target="_blank" rel="noopener">Working Paper</a>
-          </p>
-        </article>
+          <article class="card">
+            <div class="title"><strong>Organised Crime, Criminal Violence, and State Capacity</strong></div>
+            <p>Evidence from Paraguay's frontier with Brazil.</p>
+            <p class="list-clean">
+              <a class="inline" href="papers/Abstract_Github.pdf" target="_blank" rel="noopener">Abstract</a> ·
+              <a class="inline" href="papers/infographics.pdf" target="_blank" rel="noopener">Infographics</a> ·
+              <a class="inline" href="papers/42433_GV499 (2).pdf" target="_blank" rel="noopener">Full Paper</a>
+            </p>
+          </article>
 
-        <article class="card grid-6">
-          <div class="title"><strong>Institutions & Organized Crime: A Simple Game-Theoretic Model</strong></div>
-          <p>Static 2×2 and a signalling extension linking state capacity, deterrence, and criminal confrontation. I derive best responses, pure/mixed equilibria, and comparative statics with testable implications.</p>
-          <p class="list-clean">
-            <a class="inline" href="papers/Game_Theory_Project.pdf" target="_blank" rel="noopener">Working Paper</a>
-          </p>
-        </article>
+          <article class="card">
+            <div class="title"><strong>Prison Overcrowding &amp; Attack Risk</strong></div>
+            <p>Panel probability models relating prison strain to organised-crime–linked attacks in Brazil; results as odds ratios and AMEs.</p>
+            <p class="list-clean">
+              <a class="inline" href="papers/Overcrowded_Prison_Conditions.pdf" target="_blank" rel="noopener">Working Paper</a>
+            </p>
+          </article>
 
-        <article class="card grid-6">
-          <div class="title"><strong>Why Paraguay Recognizes Taiwan (and Not China)</strong></div>
-          <p>A sequential game-theoretic model of recognition choices under relational status, targeted rents, and PRC material packages.</p>
-          <p class="list-clean">
-            <a class="inline" href="papers/Paraguay___Taiwan_Vs_China (1).pdf" target="_blank" rel="noopener">Full Paper (ES)</a>
-            <a class="inline" href="papers/Paraguay_Taiwan_China___ENG_.pdf" target="_blank" rel="noopener">Full Paper (EN)</a>
-          </p>
-        </article>
+          <article class="card">
+            <div class="title"><strong>Causal Replication and Reappraisal of Téllez (2022)</strong></div>
+            <p>Reappraisal of <em>Land, Opportunism, and Displacement in Civil Wars</em> with modern DiD estimators and extended Colombian data (2007–2015).</p>
+            <p class="list-clean">
+              <a class="inline" href="papers/Causal_Replication_Tellez_2022.pdf" target="_blank" rel="noopener">Full Paper (PDF)</a>
+            </p>
+          </article>
 
-        <article class="card grid-6">
-          <div class="title"><strong>Causal Replication and Reappraisal of Téllez (2022)</strong></div>
-          <p>Reappraisal of <em>Land, Opportunism, and Displacement in Civil Wars</em> with modern DiD estimators and extended Colombian data (2007–2015).</p>
-          <p class="list-clean">
-            <a class="inline" href="papers/Causal_Replication_Tellez_2022.pdf" target="_blank" rel="noopener">Full Paper (PDF)</a>
-          </p>
-        </article>
+          <article class="card">
+            <div class="title"><strong>Incidence of ACE 35 on Paraguay–Chile Trade (1997–2021)</strong></div>
+            <p>Evaluation of a trade agreement using the Gravity Model of International Trade.</p>
+            <p class="list-clean">
+              <a class="inline" href="papers/IncidenciaACE35.pdf" target="_blank" rel="noopener">Full Paper (ES)</a> ·
+              <a class="inline" href="papers/English_Summary_and_Results.pdf" target="_blank" rel="noopener">English Summary &amp; Results</a>
+            </p>
+          </article>
 
-        <article class="card grid-6">
-          <div class="title"><strong>Incidence of ACE 35 on Paraguay–Chile Trade (1997–2021)</strong></div>
-          <p>Evaluation of a trade agreement using the Gravity Model of International Trade.</p>
-          <p class="list-clean">
-            <a class="inline" href="papers/IncidenciaACE35.pdf" target="_blank" rel="noopener">Full Paper in Spanish</a>
-            <a class="inline" href="papers/English_Summary_and_Results.pdf" target="_blank" rel="noopener">English Summary & Results</a>
-          </p>
-        </article>
+          <article class="card">
+            <div class="title"><strong>The Impact of LGBT Civil Union Legislation on Right-Wing Populist Support in Europe</strong></div>
+            <p>Political economy of populism — Difference-in-Differences.</p>
+            <p class="list-clean">
+              <a class="inline" href="papers/LGBTEurope.pdf" rel="noopener">Full Paper</a>
+            </p>
+          </article>
 
-        <article class="card grid-6">
-          <div class="title"><strong>The Impact of LGBT Civil Union Legislation on Right-Wing Populist Support in Europe</strong></div>
-          <p>Political economy of populism — Difference-in-Differences.</p>
-          <p class="list-clean">
-            <a class="inline" href="papers/LGBTEurope.pdf" rel="noopener">Full Paper</a>
-          </p>
-        </article>
+        </div>
       </div>
+
+      <!-- SUBSECTION 2: Game Theory -->
+      <div class="research-sub">
+        <div class="research-sub-title">Game Theory</div>
+        <div class="research-cols">
+
+          <article class="card">
+            <div class="title"><strong>Institutions &amp; Organized Crime: A Simple Game-Theoretic Model</strong></div>
+            <p>Static 2×2 and a signalling extension linking state capacity, deterrence, and criminal confrontation. I derive best responses, pure/mixed equilibria, and comparative statics with testable implications.</p>
+            <p class="list-clean">
+              <a class="inline" href="papers/Game_Theory_Project.pdf" target="_blank" rel="noopener">Working Paper</a>
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="title"><strong>Why Paraguay Recognizes Taiwan (and Not China)</strong></div>
+            <p>A sequential game-theoretic model of recognition choices under relational status, targeted rents, and PRC material packages.</p>
+            <p class="list-clean">
+              <a class="inline" href="papers/Paraguay___Taiwan_Vs_China (1).pdf" target="_blank" rel="noopener">Full Paper (ES)</a> ·
+              <a class="inline" href="papers/Paraguay_Taiwan_China___ENG_.pdf" target="_blank" rel="noopener">Full Paper (EN)</a>
+            </p>
+          </article>
+
+        </div>
+      </div>
+
     </section>
 
     <!-- WORK EXPERIENCE -->
@@ -227,117 +267,104 @@
       <div class="section-kicker">Career</div>
       <h2>Work Experience</h2>
 
-      <div class="cards">
+      <ul class="work-list">
 
-        <article class="card grid-8">
-          <div class="title"><strong>Evaluation Officer — Apr. 2026 – Present</strong> · The Policy Institute, King's College London · London, UK</div>
-          <ul class="list-clean">
-            <li>Within the Evidence Development and Incubation Team (EDIT). Supports the design and delivery of impact evaluations across education, employment, and social policy programmes, using experimental and quasi-experimental methods.</li>
-            <li>Contributing to implementation and process evaluations to assess how interventions operate in practice, working with government departments, public bodies, and charities to generate rigorous, policy-relevant insights.</li>
-          </ul>
-          <div style="margin-top:10px">
-            <span class="tag">RCTs</span><span class="tag">Quasi-experimental</span><span class="tag">Impact Evaluation</span>
+        <li class="work-item">
+          <div class="work-date">Apr. 2026 – Present</div>
+          <div class="work-body">
+            <strong>Evaluation Officer</strong>
+            <div class="work-org">The Policy Institute (EDIT) · King's College London · London, UK</div>
+            <p>Supports the design and delivery of impact evaluations across education, employment, and social policy programmes, using experimental and quasi-experimental methods. Works with government departments, public bodies, and charities to generate rigorous, policy-relevant insights.</p>
+            <div class="work-tags"><span class="tag">RCTs</span><span class="tag">Quasi-experimental</span><span class="tag">Impact Evaluation</span></div>
           </div>
-        </article>
+        </li>
 
-        <article class="card grid-4">
-          <div class="title"><strong>Research Associate — Jan. 2026 – Apr. 2026</strong> · The Policy Institute (EDIT), King's College London</div>
-          <ul class="list-clean">
-            <li>Supported analysis and evaluation of public policies and social programmes using rigorous quantitative methods, with a strong focus on impact evaluation and experimental designs, including the design, implementation, and analysis of RCTs.</li>
-          </ul>
-        </article>
-
-        <article class="card grid-8">
-          <div class="title"><strong>International Organisations & Projects</strong></div>
-          <ul class="list-clean">
-            <li><strong>Circular Economy Promotion Project</strong> — strategies to transition industries to sustainability (with Moisés Bertoni Foundation & <strong>IDB</strong>).</li>
-            <li><strong>Sustainable Municipal Development Plan</strong> — policy & implementation roadmap for four municipalities (<strong>FIIAPP</strong>).</li>
-            <li><strong>Participatory Governance Processes</strong> — collaboration with <strong>UNDP</strong> to design two innovative municipal projects.</li>
-            <li><strong>"Paraguay + Verde" Initiative</strong> — policy design for sustainable development & biodiversity (<strong>UNDP</strong> & <strong>UNEP</strong>).</li>
-            <li><strong>Sustainable Production Ideas Hackathon</strong> — advice on 10 innovation projects with <strong>WWF</strong> & <strong>USAID</strong>.</li>
-            <li><strong>Macroeconomic & Sectoral Reports</strong> — for financial institutions and the <strong>Latin American Reserve Fund (FLAR)</strong>.</li>
-          </ul>
-          <div>
-            <span class="tag">UNDP</span><span class="tag">IDB</span><span class="tag">UNEP</span>
-            <span class="tag">WWF</span><span class="tag">USAID</span><span class="tag">FLAR</span>
+        <li class="work-item">
+          <div class="work-date">Jun. 2025 – Present</div>
+          <div class="work-body">
+            <strong>Economic &amp; Policy Advisor | Consultant</strong>
+            <div class="work-org">Freelance / Autónomo</div>
+            <p>Policy briefings on food price dynamics, market concentration, and prison overcrowding. Economic research on inequality and institutional capacity, informing cross-party committees.</p>
           </div>
-        </article>
+        </li>
 
-        <article class="card grid-4">
-          <div class="title"><strong>Tech Stack</strong></div>
-          <ul class="list-clean">
-            <li>R (tidyverse, fixest, did, did2s, ggplot2)</li>
-            <li>Stata (reghdfe, csdid)</li>
-            <li>LaTeX, Quarto, Markdown, Git</li>
-            <li>Microsoft Office</li>
-            <div class="title" style="margin-top:8px;"><strong>In training</strong></div>
-            <li>Python (pandas)</li>
-          </ul>
-        </article>
+        <li class="work-item">
+          <div class="work-date">Jan. – Apr. 2026</div>
+          <div class="work-body">
+            <strong>Research Associate</strong>
+            <div class="work-org">The Policy Institute (EDIT) · King's College London · London, UK</div>
+            <p>Supported analysis and evaluation of public policies and social programmes using rigorous quantitative methods, with strong focus on impact evaluation and experimental designs including RCTs.</p>
+          </div>
+        </li>
 
+        <li class="work-item">
+          <div class="work-date">Jan. – Feb. 2026</div>
+          <div class="work-body">
+            <strong>Research Assistant</strong>
+            <div class="work-org">King's College London — Dept. of Political Economy · Hybrid</div>
+            <p>Project: <em>The Impact of Climate Change on the Mental and Physical Health of Workers in the UK</em>. Cleaned and harmonised large-scale datasets including high-resolution (1 km grid) climatic shock data from the UK Met Office, integrated with UK administrative geographies (LSOA, MSOA, LAD). Produced data visualisations and geographic figures.</p>
+          </div>
+        </li>
+
+        <li class="work-item">
+          <div class="work-date">2024 – 2025</div>
+          <div class="work-body">
+            <strong>Research Assistant (Part-time)</strong>
+            <div class="work-org">Gabriela Villalba · University of Sussex, Brighton</div>
+            <p>Project: <em>The Impact of the Mandatory High Quality Evaluation Policy on the Selection of Students into the Teaching Profession: Evidence from Colombia</em>. Data collection and economic analysis; scripts in Stata and R.</p>
+          </div>
+        </li>
+
+        <li class="work-item">
+          <div class="work-date">2023 – 2024</div>
+          <div class="work-body">
+            <strong>Economic Consultant</strong>
+            <div class="work-org">Mentu Consulting · Asunción, Paraguay</div>
+            <p>Led consultancy projects on financial evaluation of transactions in the medical and pharmaceutical sectors. Economic and political conjuncture analysis for international organizations and multinationals.</p>
+          </div>
+        </li>
+
+        <li class="work-item">
+          <div class="work-date">2022 – 2023</div>
+          <div class="work-body">
+            <strong>Economic Analyst — Unit of Economics &amp; Public Policies</strong>
+            <div class="work-org">Mentu Consulting · Asunción, Paraguay</div>
+            <p>Monthly and quarterly macroeconomic and sectoral reports for financial institutions. Impact assessments and project evaluations for social projects in rural communities in Paraguay.</p>
+          </div>
+        </li>
+
+        <li class="work-item">
+          <div class="work-date">2021 – 2022</div>
+          <div class="work-body">
+            <strong>Assistant — Unit of Economics &amp; Public Policies</strong>
+            <div class="work-org">Mentu Consulting · Asunción, Paraguay</div>
+            <p>Authored 400+ concise reports on global economic trends for five sectors. Monitored international commodity markets (soybean, corn, wheat, oil, gas). Managed databases and economic forecasts for public policy evaluations.</p>
+            <div class="work-tags">
+              <span class="tag">UNDP</span><span class="tag">IDB</span><span class="tag">UNEP</span><span class="tag">WWF</span><span class="tag">USAID</span><span class="tag">FLAR</span>
+            </div>
+          </div>
+        </li>
+
+        <li class="work-item">
+          <div class="work-date">2019 – 2021</div>
+          <div class="work-body">
+            <strong>President, Economics Club</strong>
+            <div class="work-org">National University of Asunción</div>
+            <p>Founded and led the club; organized lectures, seminars, and a training course.</p>
+          </div>
+        </li>
+
+      </ul>
+
+      <div style="margin-top:24px">
+        <div class="title" style="margin-bottom:10px"><strong>Tech Stack</strong></div>
+        <span class="tag">R (tidyverse · fixest · did · did2s · ggplot2)</span>
+        <span class="tag">Stata (reghdfe · csdid)</span>
+        <span class="tag">LaTeX · Quarto · Markdown · Git</span>
+        <span class="tag">Microsoft Office</span>
+        <span class="tag" style="opacity:.6">Python (pandas — in training)</span>
       </div>
 
-      <div class="cards">
-
-        <article class="card grid-12">
-          <div class="title"><strong>Economic & Policy Advisor | Consultant — Jun. 2025 – Present</strong> · Freelance / Autónomo</div>
-          <ul class="list-clean">
-            <li>Produced policy briefings on food price dynamics, market concentration, and prison overcrowding.</li>
-            <li>Conducted economic research on inequality and institutional capacity, informing cross-party committees.</li>
-            <li>Policy research and visualization of variables for evidence-based advocacy.</li>
-          </ul>
-        </article>
-
-        <article class="card grid-12">
-          <div class="title"><strong>Research Assistant — Jan. 2026 – Feb. 2026</strong> · King's College London (School of Politics & Economics — Department of Political Economy) · Hybrid</div>
-          <ul class="list-clean">
-            <li>Project: <em>The Impact of Climate Change on the Mental and Physical Health of Workers in the United Kingdom</em>.</li>
-            <li>Cleaned, merged, and harmonised large-scale datasets, including high-resolution (1 km grid) climatic shock data from the UK Met Office, integrated with UK administrative geographies (LSOA, MSOA, LAD) for linkage with national household surveys.</li>
-            <li>Contributed to the literature review and produced data visualisations and geographic figures to support empirical analysis and policy-relevant outputs.</li>
-          </ul>
-        </article>
-
-        <article class="card grid-12">
-          <div class="title"><strong>Research Assistant (Part-time) — 2024–2025</strong> · Gabriela Villalba — University of Sussex, Brighton, England</div>
-          <ul class="list-clean">
-            <li>Project: <em>The Impact of the Mandatory High Quality Evaluation Policy on the Selection of Students into the Teaching Profession: Evidence from Colombia</em>.</li>
-            <li>Data collection and economic analysis; developed scripts in Stata and R.</li>
-          </ul>
-        </article>
-
-        <article class="card grid-12">
-          <div class="title"><strong>Economic Consultant — 2023–2024</strong> · Mentu Consulting, Asunción, Paraguay</div>
-          <ul class="list-clean">
-            <li>Led consultancy projects focused on financial evaluation of transactions in the medical and pharmaceutical sectors.</li>
-            <li>Conducted economic and political conjuncture analysis for international organizations and multinational enterprises.</li>
-          </ul>
-        </article>
-
-        <article class="card grid-12">
-          <div class="title"><strong>Economic Analyst, Unit of Economics & Public Policies — 2022–2023</strong> · Mentu Consulting, Asunción, Paraguay</div>
-          <ul class="list-clean">
-            <li>Produced monthly and quarterly macroeconomic and sectoral reports for financial institutions.</li>
-            <li>Directed impact assessments reports and project evaluations for social projects in rural communities in Paraguay.</li>
-          </ul>
-        </article>
-
-        <article class="card grid-12">
-          <div class="title"><strong>Assistant, Unit of Economics & Public Policies — 2021–2022</strong> · Mentu Consulting, Asunción, Paraguay</div>
-          <ul class="list-clean">
-            <li>Authored more than four hundred concise reports on global economic trends and implications for the Paraguayan economy, informing stakeholders across five sectors.</li>
-            <li>Monitored international commodity markets (soybean, corn, wheat, oil, gas), providing daily updates to support financial and strategic planning.</li>
-            <li>Managed databases and conducted economic forecasts to assist in public policy evaluations.</li>
-          </ul>
-        </article>
-
-        <article class="card grid-12">
-          <div class="title"><strong>President, Economics Club — 2019–2021</strong> · National University of Asunción</div>
-          <ul class="list-clean">
-            <li>Founded and led the club; organized lectures, seminars, and a training course.</li>
-          </ul>
-        </article>
-
-      </div>
     </section>
 
     <!-- AWARDS -->
