@@ -102,6 +102,66 @@
       .work-item{ grid-template-columns:1fr; gap:4px; }
       .work-date{ text-align:left; }
     }
+
+    /* ---- R CODING SECTION ---- */
+    .rcode-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+    @media(max-width:700px){ .rcode-grid{ grid-template-columns:1fr; } }
+
+    .rcode-card{
+      background:var(--card); border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow);
+    }
+    .rcode-header{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 16px; background:rgba(255,255,255,.04);
+      border-bottom:1px solid rgba(255,255,255,.07);
+    }
+    .rcode-title{ font-weight:700; font-size:.9rem; }
+    .rcode-badge{
+      font-size:.72rem; padding:3px 9px; border-radius:999px; font-weight:600;
+      letter-spacing:.04em;
+    }
+    .badge-viz{ background:rgba(125,211,252,.15); color:var(--accent); }
+    .badge-econ{ background:rgba(167,139,250,.15); color:var(--accent-2); }
+
+    .rcode-desc{ padding:10px 16px 0; font-size:.83rem; color:var(--muted); }
+
+    /* Code block */
+    pre.rcode{
+      margin:0; padding:16px; overflow-x:auto;
+      font-family:'JetBrains Mono','Fira Code','Cascadia Code',monospace;
+      font-size:.78rem; line-height:1.65; background:transparent;
+    }
+    /* Syntax tokens */
+    .tk-kw  { color:#f97583; }   /* keywords: library, function, if */
+    .tk-fn  { color:#79b8ff; }   /* function names */
+    .tk-str { color:#9ecbff; }   /* strings */
+    .tk-num { color:#f8c555; }   /* numbers */
+    .tk-cmt { color:#6a737d; font-style:italic; } /* comments */
+    .tk-op  { color:#e1e4e8; }   /* operators, pipe */
+    .tk-var { color:#e6e8ef; }   /* plain vars */
+    .tk-pkg { color:#b392f0; }   /* package::fn */
+
+    /* ---- ACCORDION (collapsible subsections) ---- */
+    .accordion{ border:1px solid rgba(255,255,255,.08); border-radius:var(--radius);
+      margin-bottom:14px; overflow:hidden; }
+    .accordion-btn{
+      width:100%; background:rgba(255,255,255,.04); border:none; cursor:pointer;
+      padding:13px 18px; display:flex; align-items:center; justify-content:space-between;
+      color:var(--text); font-family:inherit; font-size:.88rem; font-weight:700;
+      text-align:left; gap:12px;
+    }
+    .accordion-btn:hover{ background:rgba(255,255,255,.07); }
+    .accordion-label{ display:flex; align-items:center; gap:10px; }
+    .accordion-arrow{ font-size:.75rem; color:var(--muted); transition:transform .25s; }
+    .accordion-btn[aria-expanded="true"] .accordion-arrow{ transform:rotate(180deg); }
+    .accordion-body{ display:none; padding:18px; }
+    .accordion-body.open{ display:block; }
+    .badge-data{ background:rgba(110,231,183,.15); color:#6ee7b7; }
+    .badge-ols { background:rgba(253,186,116,.15); color:#fbbf24; }
+    .badge-rdd { background:rgba(249,115,22,.15);  color:#fb923c; }
+    .badge-text{ background:rgba(167,139,250,.15); color:var(--accent-2); }
+    .badge-ddd { background:rgba(244,114,182,.15); color:#f472b6; }
   </style>
 </head>
 
@@ -114,6 +174,7 @@
         <a href="#studies">Studies</a>
         <a href="#research">Research</a>
         <a href="#work">Work Experience</a>
+        <a href="#rcoding">R Coding</a>
         <a href="#contact-media">Contact</a>
       </nav>
     </div>
@@ -367,6 +428,736 @@
 
     </section>
 
+    <!-- R CODING — FULL VERSION -->
+    <section id="rcoding">
+      <div class="section-kicker">Templates &amp; Scripts</div>
+      <h2>R Coding</h2>
+      <p style="color:var(--muted);margin-bottom:24px;font-size:.92rem;">Reusable scripts from my research workflow — click a topic to expand. Based on GV481 · MY457 · MY459 (LSE 2024/25).</p>
+
+      <!-- ═══ 1. SETUP ═══ -->
+      <div class="accordion">
+        <button class="accordion-btn" aria-expanded="false" onclick="toggleAcc(this)">
+          <span class="accordion-label"><span class="rcode-badge badge-data">Setup</span> Universal Boilerplate</span>
+          <span class="accordion-arrow">▼</span>
+        </button>
+        <div class="accordion-body">
+          <div class="rcode-card">
+            <div class="rcode-desc" style="padding:10px 0 0">Auto-install &amp; load packages, set seed.</div>
+            <pre class="rcode"><span class="tk-var">package_check</span> <span class="tk-op">&lt;-</span> <span class="tk-kw">function</span>(need = <span class="tk-fn">c</span>()) {
+  have <span class="tk-op">&lt;-</span> need <span class="tk-op">%in%</span> <span class="tk-fn">rownames</span>(<span class="tk-fn">installed.packages</span>())
+  <span class="tk-kw">if</span> (<span class="tk-fn">any</span>(!have)) <span class="tk-fn">install.packages</span>(need[!have])
+  <span class="tk-fn">invisible</span>(<span class="tk-fn">lapply</span>(need, library, character.only = <span class="tk-kw">TRUE</span>))
+}
+<span class="tk-fn">package_check</span>(<span class="tk-fn">c</span>(<span class="tk-str">"dplyr"</span>, <span class="tk-str">"ggplot2"</span>, <span class="tk-str">"estimatr"</span>, <span class="tk-str">"fixest"</span>,
+               <span class="tk-str">"MatchIt"</span>, <span class="tk-str">"cobalt"</span>, <span class="tk-str">"AER"</span>, <span class="tk-str">"rdrobust"</span>, <span class="tk-str">"did"</span>, <span class="tk-str">"drdid"</span>))
+<span class="tk-fn">set.seed</span>(<span class="tk-num">02139</span>)</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ 2. DATA MANAGEMENT ═══ -->
+      <div class="accordion">
+        <button class="accordion-btn" aria-expanded="false" onclick="toggleAcc(this)">
+          <span class="accordion-label"><span class="rcode-badge badge-data">Data</span> Data Management &amp; Summary Statistics</span>
+          <span class="accordion-arrow">▼</span>
+        </button>
+        <div class="accordion-body">
+          <div class="rcode-grid">
+            <div class="rcode-card">
+              <div class="rcode-header"><span class="rcode-title">Load, Rename &amp; Recode</span><span class="rcode-badge badge-data">dplyr</span></div>
+              <pre class="rcode"><span class="tk-var">df</span> <span class="tk-op">&lt;-</span> <span class="tk-fn">read.csv</span>(<span class="tk-str">"data.csv"</span>)
+<span class="tk-var">df</span> <span class="tk-op">&lt;-</span> <span class="tk-pkg">readxl</span>::<span class="tk-fn">read_excel</span>(<span class="tk-str">"data.xlsx"</span>, sheet = <span class="tk-str">"Sheet1"</span>)
+
+<span class="tk-cmt"># Rename & recode</span>
+<span class="tk-fn">colnames</span>(df) <span class="tk-op">&lt;-</span> <span class="tk-fn">c</span>(<span class="tk-str">"country"</span>,<span class="tk-str">"year"</span>,<span class="tk-str">"fiscal_reliance"</span>,
+                   <span class="tk-str">"democracy"</span>,<span class="tk-str">"oil_income"</span>,<span class="tk-str">"autocracy"</span>)
+<span class="tk-var">df</span><span class="tk-op">$</span>is_democracy <span class="tk-op">&lt;-</span> <span class="tk-fn">ifelse</span>(<span class="tk-var">df</span><span class="tk-op">$</span>autocracy == <span class="tk-num">0</span>, <span class="tk-num">1</span>, <span class="tk-num">0</span>)
+<span class="tk-var">df</span><span class="tk-op">$</span>log_oil      <span class="tk-op">&lt;-</span> <span class="tk-fn">log</span>(<span class="tk-var">df</span><span class="tk-op">$</span>oil_income)
+<span class="tk-var">df</span><span class="tk-op">$</span>log_oil[<span class="tk-fn">is.infinite</span>(<span class="tk-var">df</span><span class="tk-op">$</span>log_oil)] <span class="tk-op">&lt;-</span> <span class="tk-kw">NA</span>
+
+<span class="tk-cmt"># Within-country SD</span>
+<span class="tk-var">df</span><span class="tk-op">$</span>var_oil <span class="tk-op">&lt;-</span> <span class="tk-fn">ave</span>(<span class="tk-var">df</span><span class="tk-op">$</span>oil_income, <span class="tk-var">df</span><span class="tk-op">$</span>country,
+                   FUN = <span class="tk-kw">function</span>(x) <span class="tk-fn">sd</span>(x, na.rm = <span class="tk-kw">TRUE</span>))</pre>
+            </div>
+            <div class="rcode-card">
+              <div class="rcode-header"><span class="rcode-title">Summary Statistics Table</span><span class="rcode-badge badge-data">stargazer</span></div>
+              <pre class="rcode"><span class="tk-cmt"># Programmatic table</span>
+stats <span class="tk-op">&lt;-</span> <span class="tk-fn">sapply</span>(df[, <span class="tk-fn">c</span>(<span class="tk-str">"fiscal_reliance"</span>,<span class="tk-str">"oil_income"</span>,<span class="tk-str">"democracy"</span>)],
+               <span class="tk-kw">function</span>(x) <span class="tk-fn">c</span>(N    = <span class="tk-fn">sum</span>(!<span class="tk-fn">is.na</span>(x)),
+                              Mean = <span class="tk-fn">mean</span>(x, na.rm = <span class="tk-kw">TRUE</span>),
+                              SD   = <span class="tk-fn">sd</span>(x,   na.rm = <span class="tk-kw">TRUE</span>),
+                              Min  = <span class="tk-fn">min</span>(x,   na.rm = <span class="tk-kw">TRUE</span>),
+                              Max  = <span class="tk-fn">max</span>(x,   na.rm = <span class="tk-kw">TRUE</span>)))
+<span class="tk-fn">t</span>(stats)
+
+<span class="tk-cmt"># Publication-ready (stargazer)</span>
+<span class="tk-kw">library</span>(<span class="tk-str">stargazer</span>)
+<span class="tk-fn">stargazer</span>(<span class="tk-fn">data.frame</span>(df[, <span class="tk-fn">c</span>(<span class="tk-str">"democracy"</span>,<span class="tk-str">"oil_income"</span>)]),
+          type = <span class="tk-str">"text"</span>,
+          summary.stat = <span class="tk-fn">c</span>(<span class="tk-str">"n"</span>,<span class="tk-str">"mean"</span>,<span class="tk-str">"sd"</span>,<span class="tk-str">"min"</span>,<span class="tk-str">"max"</span>),
+          digits = <span class="tk-num">2</span>)</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ 3. OLS ═══ -->
+      <div class="accordion">
+        <button class="accordion-btn" aria-expanded="false" onclick="toggleAcc(this)">
+          <span class="accordion-label"><span class="rcode-badge badge-ols">OLS</span> OLS Regression &amp; Fixed Effects</span>
+          <span class="accordion-arrow">▼</span>
+        </button>
+        <div class="accordion-body">
+          <div class="rcode-grid">
+            <div class="rcode-card">
+              <div class="rcode-header"><span class="rcode-title">Robust OLS &amp; Interactions</span><span class="rcode-badge badge-ols">estimatr</span></div>
+              <pre class="rcode"><span class="tk-kw">library</span>(<span class="tk-str">estimatr</span>)
+m1 <span class="tk-op">&lt;-</span> <span class="tk-fn">lm_robust</span>(democracy <span class="tk-op">~</span> oil_income, data = df)
+m2 <span class="tk-op">&lt;-</span> <span class="tk-fn">lm_robust</span>(democracy <span class="tk-op">~</span> oil_income + log_gdp + population, data = df)
+m3 <span class="tk-op">&lt;-</span> <span class="tk-fn">lm_robust</span>(democracy <span class="tk-op">~</span> oil_income <span class="tk-op">*</span> is_democracy, data = df)
+
+<span class="tk-fn">stargazer</span>(m1, m2, m3, type = <span class="tk-str">"text"</span>,
+          keep.stat = <span class="tk-fn">c</span>(<span class="tk-str">"n"</span>,<span class="tk-str">"rsq"</span>),
+          dep.var.labels = <span class="tk-str">"Democracy"</span>)</pre>
+            </div>
+            <div class="rcode-card">
+              <div class="rcode-header"><span class="rcode-title">TWFE — Panel Fixed Effects</span><span class="rcode-badge badge-ols">fixest</span></div>
+              <pre class="rcode"><span class="tk-kw">library</span>(<span class="tk-str">fixest</span>)
+<span class="tk-cmt"># Unit FE</span>
+fe1 <span class="tk-op">&lt;-</span> <span class="tk-fn">feols</span>(democracy <span class="tk-op">~</span> oil_income | country,
+             data = df, vcov = <span class="tk-str">"HC1"</span>)
+<span class="tk-cmt"># Two-way FE</span>
+fe2 <span class="tk-op">&lt;-</span> <span class="tk-fn">feols</span>(democracy <span class="tk-op">~</span> oil_income | country + year,
+             data = df, vcov = <span class="tk-op">~</span>country)
+<span class="tk-fn">etable</span>(fe1, fe2)</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ 4. SELECTION ON OBSERVABLES ═══ -->
+      <div class="accordion">
+        <button class="accordion-btn" aria-expanded="false" onclick="toggleAcc(this)">
+          <span class="accordion-label"><span class="rcode-badge badge-econ">SOO</span> Selection on Observables — Matching &amp; IPW</span>
+          <span class="accordion-arrow">▼</span>
+        </button>
+        <div class="accordion-body">
+          <div class="rcode-grid">
+            <div class="rcode-card">
+              <div class="rcode-header"><span class="rcode-title">MatchIt — NN Matching + Love Plot</span><span class="rcode-badge badge-econ">MatchIt · cobalt</span></div>
+              <pre class="rcode"><span class="tk-kw">library</span>(<span class="tk-str">MatchIt</span>); <span class="tk-kw">library</span>(<span class="tk-str">cobalt</span>)
+m_nn <span class="tk-op">&lt;-</span> <span class="tk-pkg">MatchIt</span>::<span class="tk-fn">matchit</span>(D <span class="tk-op">~</span> X + Q,
+          data = df_sim, method = <span class="tk-str">"nearest"</span>,
+          distance = <span class="tk-str">"mahalanobis"</span>)
+m_data <span class="tk-op">&lt;-</span> <span class="tk-pkg">MatchIt</span>::<span class="tk-fn">match.data</span>(m_nn, weights = <span class="tk-str">"nn_weights"</span>)
+
+<span class="tk-cmt"># Balance</span>
+<span class="tk-pkg">cobalt</span>::<span class="tk-fn">love.plot</span>(m_nn, data = df_sim, stars = <span class="tk-str">"raw"</span>)
+
+<span class="tk-cmt"># ATT on matched data</span>
+<span class="tk-fn">summary</span>(<span class="tk-fn">lm_robust</span>(Y <span class="tk-op">~</span> D, m_data, weights = nn_weights))</pre>
+            </div>
+            <div class="rcode-card">
+              <div class="rcode-header"><span class="rcode-title">IPW — Inverse Probability Weighting</span><span class="rcode-badge badge-econ">estimatr</span></div>
+              <pre class="rcode"><span class="tk-cmt"># Propensity score</span>
+ps_mod <span class="tk-op">&lt;-</span> <span class="tk-fn">glm</span>(D <span class="tk-op">~</span> X + Q, data = df_sim, family = <span class="tk-str">"binomial"</span>)
+df_sim<span class="tk-op">$</span>pscore_hat <span class="tk-op">&lt;-</span> <span class="tk-fn">predict</span>(ps_mod, type = <span class="tk-str">"response"</span>)
+
+<span class="tk-cmt"># IPW weights</span>
+df_sim<span class="tk-op">$</span>ipw <span class="tk-op">&lt;-</span> <span class="tk-fn">ifelse</span>(df_sim<span class="tk-op">$</span>D == <span class="tk-num">1</span>,
+  <span class="tk-num">1</span> / df_sim<span class="tk-op">$</span>pscore_hat,
+  <span class="tk-num">1</span> / (<span class="tk-num">1</span> - df_sim<span class="tk-op">$</span>pscore_hat))
+
+<span class="tk-cmt"># ATE via IPW</span>
+<span class="tk-fn">summary</span>(<span class="tk-fn">lm_robust</span>(Y <span class="tk-op">~</span> D, df_sim, weights = ipw))
+
+<span class="tk-cmt"># ATT (manual plug-in)</span>
+<span class="tk-kw">with</span>(df_sim,
+  <span class="tk-fn">sum</span>(D<span class="tk-op">*</span>Y - (<span class="tk-num">1</span>-D)<span class="tk-op">*</span>Y<span class="tk-op">*</span>(pscore_hat/(<span class="tk-num">1</span>-pscore_hat))) / <span class="tk-fn">sum</span>(D)
+)</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ 5. IV ═══ -->
+      <div class="accordion">
+        <button class="accordion-btn" aria-expanded="false" onclick="toggleAcc(this)">
+          <span class="accordion-label"><span class="rcode-badge badge-ols">IV</span> Instrumental Variables — Wald &amp; 2SLS</span>
+          <span class="accordion-arrow">▼</span>
+        </button>
+        <div class="accordion-body">
+          <div class="rcode-grid">
+            <div class="rcode-card">
+              <div class="rcode-header"><span class="rcode-title">Wald Estimator &amp; Manual 2SLS</span><span class="rcode-badge badge-ols">AER · estimatr</span></div>
+              <pre class="rcode"><span class="tk-cmt"># Wald estimator</span>
+ITT   <span class="tk-op">&lt;-</span> <span class="tk-fn">mean</span>(df_sim<span class="tk-op">$</span>Y[df_sim<span class="tk-op">$</span>Z==<span class="tk-num">1</span>]) - <span class="tk-fn">mean</span>(df_sim<span class="tk-op">$</span>Y[df_sim<span class="tk-op">$</span>Z==<span class="tk-num">0</span>])
+first <span class="tk-op">&lt;-</span> <span class="tk-fn">mean</span>(df_sim<span class="tk-op">$</span>D[df_sim<span class="tk-op">$</span>Z==<span class="tk-num">1</span>]) - <span class="tk-fn">mean</span>(df_sim<span class="tk-op">$</span>D[df_sim<span class="tk-op">$</span>Z==<span class="tk-num">0</span>])
+LATE  <span class="tk-op">&lt;-</span> ITT / first
+
+<span class="tk-cmt"># 2SLS (fixest — fastest + cluster SE)</span>
+<span class="tk-fn">feols</span>(Y <span class="tk-op">~</span> X | D <span class="tk-op">~</span> Z, data = df_sim, vcov = <span class="tk-str">"HC1"</span>)
+
+<span class="tk-cmt"># First-stage F (rule of thumb &gt; 10)</span>
+<span class="tk-fn">summary</span>(<span class="tk-fn">lm_robust</span>(D <span class="tk-op">~</span> Z + X, df_sim))</pre>
+            </div>
+            <div class="rcode-card">
+              <div class="rcode-header"><span class="rcode-title">2SLS with covariates (ivreg)</span><span class="rcode-badge badge-ols">AER</span></div>
+              <pre class="rcode"><span class="tk-kw">library</span>(<span class="tk-str">AER</span>)
+<span class="tk-cmt"># Y ~ D + X | Z + X  (X on both sides)</span>
+iv_cov <span class="tk-op">&lt;-</span> <span class="tk-fn">ivreg</span>(Y <span class="tk-op">~</span> D + X | Z + X, data = df_sim)
+<span class="tk-fn">summary</span>(iv_cov, vcov = sandwich, df = <span class="tk-fn">nrow</span>(df_sim) - <span class="tk-num">2</span>)</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ 6. RDD ═══ -->
+      <div class="accordion">
+        <button class="accordion-btn" aria-expanded="false" onclick="toggleAcc(this)">
+          <span class="accordion-label"><span class="rcode-badge badge-rdd">RDD</span> Regression Discontinuity Design</span>
+          <span class="accordion-arrow">▼</span>
+        </button>
+        <div class="accordion-body">
+          <div class="rcode-grid">
+            <div class="rcode-card">
+              <div class="rcode-header"><span class="rcode-title">rdrobust — Local Polynomial + Bias-Corrected</span><span class="rcode-badge badge-rdd">rdrobust</span></div>
+              <pre class="rcode"><span class="tk-kw">library</span>(<span class="tk-str">rdrobust</span>); <span class="tk-kw">library</span>(<span class="tk-str">rddensity</span>)
+cutoff <span class="tk-op">&lt;-</span> <span class="tk-num">5</span>
+df_rdd <span class="tk-op">&lt;-</span> df_rdd <span class="tk-op">|&gt;</span>
+  <span class="tk-fn">mutate</span>(X_c = X - cutoff, D = <span class="tk-fn">ifelse</span>(X <span class="tk-op">&gt;=</span> cutoff, <span class="tk-num">1</span>, <span class="tk-num">0</span>))
+
+<span class="tk-cmt"># Local polynomial (conventional + robust)</span>
+rd <span class="tk-op">&lt;-</span> <span class="tk-fn">rdrobust</span>(df_rdd<span class="tk-op">$</span>Y, df_rdd<span class="tk-op">$</span>X_c, c = <span class="tk-num">0</span>, all = <span class="tk-kw">TRUE</span>)
+<span class="tk-fn">summary</span>(rd)
+
+<span class="tk-cmt"># Bandwidth selection (MSE)</span>
+<span class="tk-fn">rdbwselect</span>(df_rdd<span class="tk-op">$</span>Y, df_rdd<span class="tk-op">$</span>X_c, c = <span class="tk-num">0</span>)<span class="tk-op">$</span>bws</pre>
+            </div>
+            <div class="rcode-card">
+              <div class="rcode-header"><span class="rcode-title">RDD Falsification Tests</span><span class="rcode-badge badge-rdd">rdrobust · rddensity</span></div>
+              <pre class="rcode"><span class="tk-cmt"># 1. Covariate balance at cutoff</span>
+<span class="tk-fn">summary</span>(<span class="tk-fn">rdrobust</span>(df_rdd<span class="tk-op">$</span>Q, df_rdd<span class="tk-op">$</span>X_c))
+
+<span class="tk-cmt"># 2. McCrary/Cattaneo density test (no sorting)</span>
+dens <span class="tk-op">&lt;-</span> <span class="tk-fn">rddensity</span>(df_rdd<span class="tk-op">$</span>X_c, c = <span class="tk-num">0</span>)
+<span class="tk-fn">summary</span>(dens)
+
+<span class="tk-cmt"># 3. Placebo cutpoints loop</span>
+plac_c <span class="tk-op">&lt;-</span> <span class="tk-fn">c</span>(<span class="tk-fn">seq</span>(<span class="tk-num">2</span>, <span class="tk-num">4.5</span>, <span class="tk-num">.1</span>), <span class="tk-fn">seq</span>(<span class="tk-num">5.5</span>, <span class="tk-num">8</span>, <span class="tk-num">.1</span>))
+plac_est <span class="tk-op">&lt;-</span> <span class="tk-fn">vapply</span>(plac_c, <span class="tk-kw">function</span>(c) {
+  fit <span class="tk-op">&lt;-</span> <span class="tk-fn">rdrobust</span>(df_rdd<span class="tk-op">$</span>Y, df_rdd<span class="tk-op">$</span>X - c, all = <span class="tk-kw">TRUE</span>)
+  fit<span class="tk-op">$</span>coef[<span class="tk-num">1</span>]
+}, <span class="tk-fn">numeric</span>(<span class="tk-num">1</span>))</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ 7. DiD ═══ -->
+      <div class="accordion">
+        <button class="accordion-btn" aria-expanded="false" onclick="toggleAcc(this)">
+          <span class="accordion-label"><span class="rcode-badge badge-econ">DiD</span> Difference-in-Differences — 2×2, TWFE, Event Study, Staggered</span>
+          <span class="accordion-arrow">▼</span>
+        </button>
+        <div class="accordion-body">
+          <div class="rcode-grid">
+
+            <div class="rcode-card">
+              <div class="rcode-header"><span class="rcode-title">2×2 Canonical DiD</span><span class="rcode-badge badge-econ">estimatr · fixest</span></div>
+              <pre class="rcode"><span class="tk-cmt"># Plug-in estimator (4 means)</span>
+means <span class="tk-op">&lt;-</span> df_did <span class="tk-op">|&gt;</span> <span class="tk-fn">group_by</span>(G, t) <span class="tk-op">|&gt;</span>
+  <span class="tk-fn">summarise</span>(Y_mean = <span class="tk-fn">mean</span>(Y), .groups = <span class="tk-str">"drop"</span>)
+
+DiD <span class="tk-op">&lt;-</span> (means<span class="tk-op">$</span>Y_mean[means<span class="tk-op">$</span>G==<span class="tk-num">1</span> <span class="tk-op">&amp;</span> means<span class="tk-op">$</span>t==<span class="tk-num">1</span>] -
+        means<span class="tk-op">$</span>Y_mean[means<span class="tk-op">$</span>G==<span class="tk-num">1</span> <span class="tk-op">&amp;</span> means<span class="tk-op">$</span>t==<span class="tk-num">0</span>]) -
+       (means<span class="tk-op">$</span>Y_mean[means<span class="tk-op">$</span>G==<span class="tk-num">0</span> <span class="tk-op">&amp;</span> means<span class="tk-op">$</span>t==<span class="tk-num">1</span>] -
+        means<span class="tk-op">$</span>Y_mean[means<span class="tk-op">$</span>G==<span class="tk-num">0</span> <span class="tk-op">&amp;</span> means<span class="tk-op">$</span>t==<span class="tk-num">0</span>])
+
+<span class="tk-cmt"># Regression (interaction)</span>
+<span class="tk-fn">lm_robust</span>(Y <span class="tk-op">~</span> G <span class="tk-op">*</span> t, data = df_did)</pre>
+            </div>
+
+            <div class="rcode-card">
+              <div class="rcode-header"><span class="rcode-title">TWFE + Event Study (fixest)</span><span class="rcode-badge badge-econ">fixest</span></div>
+              <pre class="rcode"><span class="tk-cmt"># Standard TWFE</span>
+twfe <span class="tk-op">&lt;-</span> <span class="tk-fn">feols</span>(Y <span class="tk-op">~</span> post_treat | id + period,
+              data = df_panel, cluster = <span class="tk-op">~</span>id)
+
+<span class="tk-cmt"># Event study (ref = -1)</span>
+es <span class="tk-op">&lt;-</span> <span class="tk-fn">feols</span>(Y <span class="tk-op">~</span> <span class="tk-fn">i</span>(center_time, treated, ref = <span class="tk-op">-</span><span class="tk-num">1</span>) | id + period,
+            data = df_panel)
+<span class="tk-fn">iplot</span>(es)
+
+<span class="tk-cmt"># ggplot version</span>
+<span class="tk-pkg">broom</span>::<span class="tk-fn">tidy</span>(es, conf.int = <span class="tk-kw">TRUE</span>) <span class="tk-op">|&gt;</span>
+  <span class="tk-fn">mutate</span>(t = <span class="tk-fn">as.numeric</span>(<span class="tk-fn">str_extract</span>(term, <span class="tk-str">"-?[0-9]+"</span>))) <span class="tk-op">|&gt;</span>
+  <span class="tk-fn">ggplot</span>(<span class="tk-fn">aes</span>(t, estimate)) +
+  <span class="tk-fn">geom_ribbon</span>(<span class="tk-fn">aes</span>(ymin = conf.low, ymax = conf.high),
+              fill = <span class="tk-str">"#7dd3fc"</span>, alpha = <span class="tk-num">.2</span>) +
+  <span class="tk-fn">geom_line</span>(colour = <span class="tk-str">"#7dd3fc"</span>) +
+  <span class="tk-fn">geom_hline</span>(yintercept = <span class="tk-num">0</span>, linetype = <span class="tk-str">"dashed"</span>) +
+  <span class="tk-fn">theme_minimal</span>()</pre>
+            </div>
+
+            <div class="rcode-card">
+              <div class="rcode-header"><span class="rcode-title">Callaway &amp; Sant'Anna (staggered)</span><span class="rcode-badge badge-econ">did</span></div>
+              <pre class="rcode"><span class="tk-kw">library</span>(<span class="tk-str">did</span>)
+cs <span class="tk-op">&lt;-</span> <span class="tk-fn">att_gt</span>(
+  yname = <span class="tk-str">"Y"</span>, tname = <span class="tk-str">"t"</span>, idname = <span class="tk-str">"id"</span>,
+  gname = <span class="tk-str">"G"</span>,              <span class="tk-cmt"># 0 = never treated</span>
+  control_group = <span class="tk-str">"nevertreated"</span>,
+  est_method = <span class="tk-str">"dr"</span>,         <span class="tk-cmt"># doubly robust</span>
+  base_period = <span class="tk-str">"universal"</span>,
+  data = df_multi
+)
+<span class="tk-fn">summary</span>(<span class="tk-fn">aggte</span>(cs, type = <span class="tk-str">"simple"</span>))
+<span class="tk-fn">ggdid</span>(<span class="tk-fn">aggte</span>(cs, type = <span class="tk-str">"dynamic"</span>))</pre>
+            </div>
+
+            <div class="rcode-card">
+              <div class="rcode-header"><span class="rcode-title">Sant'Anna &amp; Zhao (2020) — drdid</span><span class="rcode-badge badge-econ">drdid</span></div>
+              <pre class="rcode"><span class="tk-kw">library</span>(<span class="tk-str">drdid</span>)
+<span class="tk-cmt"># Doubly-robust DiD — 2x2 panel (Zhao &amp; Sant'Anna 2020)</span>
+<span class="tk-cmt"># Requires: pre and post periods only</span>
+dr_panel <span class="tk-op">&lt;-</span> <span class="tk-fn">drdid_panel</span>(
+  y1  = df_panel<span class="tk-op">$</span>Y_post,
+  y0  = df_panel<span class="tk-op">$</span>Y_pre,
+  D   = df_panel<span class="tk-op">$</span>treated,
+  covariates = <span class="tk-fn">as.matrix</span>(df_panel[, <span class="tk-fn">c</span>(<span class="tk-str">"X1"</span>, <span class="tk-str">"X2"</span>)])
+)
+<span class="tk-fn">summary</span>(dr_panel)
+
+<span class="tk-cmt"># Repeated cross-section version</span>
+dr_rc <span class="tk-op">&lt;-</span> <span class="tk-fn">drdid_rc</span>(
+  y   = df_rc<span class="tk-op">$</span>Y,
+  post = df_rc<span class="tk-op">$</span>post,
+  D   = df_rc<span class="tk-op">$</span>treated,
+  covariates = <span class="tk-fn">as.matrix</span>(df_rc[, <span class="tk-fn">c</span>(<span class="tk-str">"X1"</span>, <span class="tk-str">"X2"</span>)])
+)
+<span class="tk-fn">summary</span>(dr_rc)</pre>
+            </div>
+
+            <div class="rcode-card">
+              <div class="rcode-header"><span class="rcode-title">fect — Counterfactual Estimator</span><span class="rcode-badge badge-econ">fect</span></div>
+              <pre class="rcode"><span class="tk-kw">library</span>(<span class="tk-str">fect</span>)
+fect_out <span class="tk-op">&lt;-</span> <span class="tk-pkg">fect</span>::<span class="tk-fn">fect</span>(Y <span class="tk-op">~</span> Z,
+  data = df_multi, index = <span class="tk-fn">c</span>(<span class="tk-str">"id"</span>,<span class="tk-str">"t"</span>),
+  method = <span class="tk-str">"ife"</span>, se = <span class="tk-kw">TRUE</span>, nboots = <span class="tk-num">200</span>)
+<span class="tk-fn">plot</span>(fect_out)
+<span class="tk-fn">plot</span>(fect_out, type = <span class="tk-str">"equiv"</span>)  <span class="tk-cmt"># pre-trend equiv test</span>
+
+<span class="tk-cmt"># Placebo period test</span>
+fect_p <span class="tk-op">&lt;-</span> <span class="tk-pkg">fect</span>::<span class="tk-fn">fect</span>(Y <span class="tk-op">~</span> Z, data = df_multi,
+  index = <span class="tk-fn">c</span>(<span class="tk-str">"id"</span>,<span class="tk-str">"t"</span>), method = <span class="tk-str">"ife"</span>,
+  se = <span class="tk-kw">TRUE</span>, placebo = <span class="tk-kw">TRUE</span>,
+  placebo.period = <span class="tk-fn">c</span>(<span class="tk-op">-</span><span class="tk-num">2</span>,<span class="tk-num">0</span>), nboots = <span class="tk-num">200</span>)
+<span class="tk-fn">plot</span>(fect_p, stats = <span class="tk-fn">c</span>(<span class="tk-str">"placebo.p"</span>,<span class="tk-str">"equiv.p"</span>))</pre>
+            </div>
+
+            <div class="rcode-card">
+              <div class="rcode-header"><span class="rcode-title">Panel View</span><span class="rcode-badge badge-econ">panelView</span></div>
+              <pre class="rcode"><span class="tk-kw">library</span>(<span class="tk-str">panelView</span>)
+<span class="tk-fn">panelview</span>(Y <span class="tk-op">~</span> post_treat,
+  data        = df_panel,
+  index       = <span class="tk-fn">c</span>(<span class="tk-str">"id"</span>,<span class="tk-str">"period"</span>),
+  xlab        = <span class="tk-str">"Year"</span>, ylab = <span class="tk-str">"Unit"</span>,
+  display.all = <span class="tk-kw">FALSE</span>, gridOff = <span class="tk-kw">TRUE</span>,
+  by.timing   = <span class="tk-kw">TRUE</span>)</pre>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ 8. TRIPLE DiD ═══ -->
+      <div class="accordion">
+        <button class="accordion-btn" aria-expanded="false" onclick="toggleAcc(this)">
+          <span class="accordion-label"><span class="rcode-badge badge-ddd">DDD</span> Triple Difference-in-Differences</span>
+          <span class="accordion-arrow">▼</span>
+        </button>
+        <div class="accordion-body">
+          <div class="rcode-grid">
+
+            <div class="rcode-card">
+              <div class="rcode-header"><span class="rcode-title">DDD — Plug-in &amp; Regression</span><span class="rcode-badge badge-ddd">fixest · estimatr</span></div>
+              <div class="rcode-desc">Three-way estimator: unit × time × subgroup. Adds a third dimension (e.g. gender, sector) to absorb confounders that vary along it.</div>
+              <pre class="rcode"><span class="tk-kw">library</span>(<span class="tk-str">fixest</span>); <span class="tk-kw">library</span>(<span class="tk-str">estimatr</span>)
+
+<span class="tk-cmt"># ── Plug-in (8 cells) ─────────────────────────────────────────────────────────
+# D = treated group, t = post, S = subgroup (e.g. affected = 1)</span>
+cells <span class="tk-op">&lt;-</span> df <span class="tk-op">|&gt;</span>
+  <span class="tk-fn">group_by</span>(D, t, S) <span class="tk-op">|&gt;</span>
+  <span class="tk-fn">summarise</span>(y = <span class="tk-fn">mean</span>(Y), .groups = <span class="tk-str">"drop"</span>)
+
+<span class="tk-var">get_cell</span> <span class="tk-op">&lt;-</span> <span class="tk-kw">function</span>(d, tt, s)
+  cells<span class="tk-op">$</span>y[cells<span class="tk-op">$</span>D==d <span class="tk-op">&amp;</span> cells<span class="tk-op">$</span>t==tt <span class="tk-op">&amp;</span> cells<span class="tk-op">$</span>S==s]
+
+DID_S1 <span class="tk-op">&lt;-</span> (<span class="tk-fn">get_cell</span>(<span class="tk-num">1</span>,<span class="tk-num">1</span>,<span class="tk-num">1</span>) - <span class="tk-fn">get_cell</span>(<span class="tk-num">1</span>,<span class="tk-num">0</span>,<span class="tk-num">1</span>)) -
+           (<span class="tk-fn">get_cell</span>(<span class="tk-num">0</span>,<span class="tk-num">1</span>,<span class="tk-num">1</span>) - <span class="tk-fn">get_cell</span>(<span class="tk-num">0</span>,<span class="tk-num">0</span>,<span class="tk-num">1</span>))
+DID_S0 <span class="tk-op">&lt;-</span> (<span class="tk-fn">get_cell</span>(<span class="tk-num">1</span>,<span class="tk-num">1</span>,<span class="tk-num">0</span>) - <span class="tk-fn">get_cell</span>(<span class="tk-num">1</span>,<span class="tk-num">0</span>,<span class="tk-num">0</span>)) -
+           (<span class="tk-fn">get_cell</span>(<span class="tk-num">0</span>,<span class="tk-num">1</span>,<span class="tk-num">0</span>) - <span class="tk-fn">get_cell</span>(<span class="tk-num">0</span>,<span class="tk-num">0</span>,<span class="tk-num">0</span>))
+DDD <span class="tk-op">&lt;-</span> DID_S1 - DID_S0
+DDD
+
+<span class="tk-cmt"># ── Regression (full interaction) ────────────────────────────────────────────
+# Coefficient on D:t:S is the DDD estimate</span>
+m_ddd <span class="tk-op">&lt;-</span> <span class="tk-fn">lm_robust</span>(
+  Y <span class="tk-op">~</span> D <span class="tk-op">*</span> t <span class="tk-op">*</span> S + <span class="tk-fn">factor</span>(unit) + <span class="tk-fn">factor</span>(year),
+  data = df, clusters = unit
+)
+<span class="tk-fn">summary</span>(m_ddd)
+
+<span class="tk-cmt"># ── fixest version (cleaner for large N, cluster SE) ─────────────────────────</span>
+m_ddd_fe <span class="tk-op">&lt;-</span> <span class="tk-fn">feols</span>(
+  Y <span class="tk-op">~</span> D<span class="tk-op">:</span>t<span class="tk-op">:</span>S + D<span class="tk-op">:</span>t + D<span class="tk-op">:</span>S + t<span class="tk-op">:</span>S | unit + year,
+  data    = df,
+  cluster = <span class="tk-op">~</span>unit
+)
+<span class="tk-fn">etable</span>(m_ddd_fe)</pre>
+            </div>
+
+            <div class="rcode-card">
+              <div class="rcode-header"><span class="rcode-title">DDD Event Study (dynamic)</span><span class="rcode-badge badge-ddd">fixest</span></div>
+              <div class="rcode-desc">Dynamic DDD — leads and lags interacted with the third dimension (S). Tests pre-trends within subgroups.</div>
+              <pre class="rcode"><span class="tk-cmt"># rel_time: periods relative to treatment (−1 omitted)</span>
+df <span class="tk-op">&lt;-</span> df <span class="tk-op">|&gt;</span>
+  <span class="tk-fn">mutate</span>(rel_time = year - treat_year,
+         rel_time = <span class="tk-fn">pmax</span>(<span class="tk-op">-</span><span class="tk-num">5</span>, <span class="tk-fn">pmin</span>(<span class="tk-num">5</span>, rel_time)))  <span class="tk-cmt"># trim tails</span>
+
+es_ddd <span class="tk-op">&lt;-</span> <span class="tk-fn">feols</span>(
+  Y <span class="tk-op">~</span> <span class="tk-fn">i</span>(rel_time, S, ref = <span class="tk-op">-</span><span class="tk-num">1</span>) +   <span class="tk-cmt"># DDD dynamics: rt × S</span>
+      <span class="tk-fn">i</span>(rel_time, ref = <span class="tk-op">-</span><span class="tk-num">1</span>)       <span class="tk-cmt"># baseline event study</span>
+    | unit + year,
+  data    = df,
+  cluster = <span class="tk-op">~</span>unit
+)
+<span class="tk-fn">iplot</span>(es_ddd, main = <span class="tk-str">"DDD Event Study"</span>)
+
+<span class="tk-cmt"># ggplot manual version</span>
+<span class="tk-pkg">broom</span>::<span class="tk-fn">tidy</span>(es_ddd, conf.int = <span class="tk-kw">TRUE</span>) <span class="tk-op">|&gt;</span>
+  <span class="tk-fn">filter</span>(<span class="tk-fn">str_detect</span>(term, <span class="tk-str">"rel_time::.*::S"</span>)) <span class="tk-op">|&gt;</span>   <span class="tk-cmt"># DDD coefficients</span>
+  <span class="tk-fn">mutate</span>(t = <span class="tk-fn">as.numeric</span>(<span class="tk-fn">str_extract</span>(term, <span class="tk-str">"-?[0-9]+"</span>))) <span class="tk-op">|&gt;</span>
+  <span class="tk-fn">ggplot</span>(<span class="tk-fn">aes</span>(t, estimate)) +
+  <span class="tk-fn">geom_ribbon</span>(<span class="tk-fn">aes</span>(ymin = conf.low, ymax = conf.high),
+              fill = <span class="tk-str">"#f472b6"</span>, alpha = <span class="tk-num">.2</span>) +
+  <span class="tk-fn">geom_line</span>(colour = <span class="tk-str">"#f472b6"</span>) +
+  <span class="tk-fn">geom_point</span>(colour = <span class="tk-str">"#f472b6"</span>) +
+  <span class="tk-fn">geom_hline</span>(yintercept = <span class="tk-num">0</span>, linetype = <span class="tk-str">"dashed"</span>, colour = <span class="tk-str">"grey60"</span>) +
+  <span class="tk-fn">geom_vline</span>(xintercept = <span class="tk-op">-</span><span class="tk-num">.5</span>, linetype = <span class="tk-str">"dotted"</span>) +
+  <span class="tk-fn">theme_minimal</span>() +
+  <span class="tk-fn">labs</span>(x = <span class="tk-str">"Periods relative to treatment"</span>,
+       y = <span class="tk-str">"DDD coefficient (95% CI)"</span>,
+       title = <span class="tk-str">"Triple DiD — Dynamic Effects on Subgroup S"</span>)</pre>
+            </div>
+
+            <!-- Sant'Anna & Zhao DDD -->
+            <div class="rcode-card" style="grid-column:1/-1">
+              <div class="rcode-header">
+                <span class="rcode-title">Sant'Anna &amp; Zhao (2020) — Doubly-Robust Triple DiD</span>
+                <span class="rcode-badge badge-ddd">drdid · manual</span>
+              </div>
+              <div class="rcode-desc">
+                Extends the Sant'Anna &amp; Zhao DR-DiD estimator to a DDD setting by stratifying on the third dimension S.
+                The DDD effect is recovered as ATT(S=1) − ATT(S=0), each estimated with doubly-robust IPW+OR weighting.
+                Villavicencio (2023) uses this logic: estimate separate DR-DiD for the subgroup of interest and a placebo subgroup, then difference them.
+              </div>
+
+<span class="tk-cmt"># ── Step 1: Estimate DR-DiD separately for S = 1 and S = 0 ──────────────────
+# Keep only pre/post periods; panel data (same units observed twice)</span>
+df_wide <span class="tk-op">&lt;-</span> df <span class="tk-op">|&gt;</span>
+  <span class="tk-fn">select</span>(unit_id, year, Y, treated, S, X1, X2) <span class="tk-op">|&gt;</span>
+  <span class="tk-fn">pivot_wider</span>(names_from = year, values_from = Y,
+              names_prefix = <span class="tk-str">"Y_"</span>)          <span class="tk-cmt"># → Y_pre, Y_post columns</span>
+
+<span class="tk-cmt"># Subgroup S = 1 (e.g. "affected" units)</span>
+df_s1 <span class="tk-op">&lt;-</span> df_wide <span class="tk-op">|&gt;</span> <span class="tk-fn">filter</span>(S == <span class="tk-num">1</span>)
+dr_s1 <span class="tk-op">&lt;-</span> <span class="tk-fn">drdid_panel</span>(
+  y1         = df_s1<span class="tk-op">$</span>Y_post,
+  y0         = df_s1<span class="tk-op">$</span>Y_pre,
+  D          = df_s1<span class="tk-op">$</span>treated,
+  covariates = <span class="tk-fn">as.matrix</span>(df_s1[, <span class="tk-fn">c</span>(<span class="tk-str">"X1"</span>, <span class="tk-str">"X2"</span>)]),
+  inffunc    = <span class="tk-kw">TRUE</span>   <span class="tk-cmt"># keep influence functions for inference</span>
+)
+
+<span class="tk-cmt"># Subgroup S = 0 (placebo / "unaffected" units)</span>
+df_s0 <span class="tk-op">&lt;-</span> df_wide <span class="tk-op">|&gt;</span> <span class="tk-fn">filter</span>(S == <span class="tk-num">0</span>)
+dr_s0 <span class="tk-op">&lt;-</span> <span class="tk-fn">drdid_panel</span>(
+  y1         = df_s0<span class="tk-op">$</span>Y_post,
+  y0         = df_s0<span class="tk-op">$</span>Y_pre,
+  D          = df_s0<span class="tk-op">$</span>treated,
+  covariates = <span class="tk-fn">as.matrix</span>(df_s0[, <span class="tk-fn">c</span>(<span class="tk-str">"X1"</span>, <span class="tk-str">"X2"</span>)]),
+  inffunc    = <span class="tk-kw">TRUE</span>
+)
+
+<span class="tk-cmt"># ── Step 2: DDD = ATT(S=1) − ATT(S=0) ───────────────────────────────────────</span>
+DDD_dr <span class="tk-op">&lt;-</span> dr_s1<span class="tk-op">$</span>ATT - dr_s0<span class="tk-op">$</span>ATT
+
+<span class="tk-cmt"># Delta-method SE using influence functions</span>
+<span class="tk-cmt"># (assumes balanced panels; rescale by n_s / n if unbalanced)</span>
+inf_ddd <span class="tk-op">&lt;-</span> dr_s1<span class="tk-op">$</span>inf.func - dr_s0<span class="tk-op">$</span>inf.func[<span class="tk-fn">seq_len</span>(<span class="tk-fn">nrow</span>(df_s1))]
+se_ddd  <span class="tk-op">&lt;-</span> <span class="tk-fn">sqrt</span>(<span class="tk-fn">mean</span>(inf_ddd<span class="tk-op">^</span><span class="tk-num">2</span>) / <span class="tk-fn">nrow</span>(df_wide))
+ci_lo   <span class="tk-op">&lt;-</span> DDD_dr - <span class="tk-num">1.96</span> <span class="tk-op">*</span> se_ddd
+ci_hi   <span class="tk-op">&lt;-</span> DDD_dr + <span class="tk-num">1.96</span> <span class="tk-op">*</span> se_ddd
+
+<span class="tk-fn">cat</span>(<span class="tk-fn">sprintf</span>(<span class="tk-str">"DR-DDD: %.4f  SE: %.4f  95%%CI: [%.4f, %.4f]\n"</span>,
+            DDD_dr, se_ddd, ci_lo, ci_hi))
+
+<span class="tk-cmt"># ── Step 3 (staggered): apply logic per cohort g using did + drdid ────────────
+# For each cohort g, split df into S=1 and S=0 and run att_gt(),
+# then difference the aggregated dynamic effects.</span>
+<span class="tk-kw">library</span>(<span class="tk-str">did</span>)
+
+<span class="tk-var">run_cs_subgroup</span> <span class="tk-op">&lt;-</span> <span class="tk-kw">function</span>(data, s_val) {
+  <span class="tk-fn">att_gt</span>(
+    yname         = <span class="tk-str">"Y"</span>, tname = <span class="tk-str">"year"</span>, idname = <span class="tk-str">"unit_id"</span>,
+    gname         = <span class="tk-str">"first_treat"</span>,
+    control_group = <span class="tk-str">"nevertreated"</span>,
+    est_method    = <span class="tk-str">"dr"</span>,           <span class="tk-cmt"># Sant'Anna & Zhao inside each subgroup</span>
+    base_period   = <span class="tk-str">"universal"</span>,
+    data          = <span class="tk-fn">filter</span>(data, S == s_val)
+  )
+}
+
+cs_s1 <span class="tk-op">&lt;-</span> <span class="tk-fn">run_cs_subgroup</span>(df, <span class="tk-num">1</span>)
+cs_s0 <span class="tk-op">&lt;-</span> <span class="tk-fn">run_cs_subgroup</span>(df, <span class="tk-num">0</span>)
+
+<span class="tk-cmt"># Dynamic aggregation per subgroup</span>
+dyn_s1 <span class="tk-op">&lt;-</span> <span class="tk-fn">aggte</span>(cs_s1, type = <span class="tk-str">"dynamic"</span>)
+dyn_s0 <span class="tk-op">&lt;-</span> <span class="tk-fn">aggte</span>(cs_s0, type = <span class="tk-str">"dynamic"</span>)
+
+<span class="tk-cmt"># Manual DDD event-study: diff the period-specific ATTs</span>
+ddd_dynamic <span class="tk-op">&lt;-</span> <span class="tk-pkg">tibble</span>::<span class="tk-fn">tibble</span>(
+  e       = dyn_s1<span class="tk-op">$</span>egt,
+  att_s1  = dyn_s1<span class="tk-op">$</span>att.egt,
+  att_s0  = dyn_s0<span class="tk-op">$</span>att.egt[<span class="tk-fn">match</span>(dyn_s1<span class="tk-op">$</span>egt, dyn_s0<span class="tk-op">$</span>egt)],
+  ddd     = att_s1 - att_s0,
+  se_ddd  = <span class="tk-fn">sqrt</span>(dyn_s1<span class="tk-op">$</span>se.egt<span class="tk-op">^</span><span class="tk-num">2</span> + dyn_s0<span class="tk-op">$</span>se.egt<span class="tk-op">^</span><span class="tk-num">2</span>)
+) <span class="tk-op">|&gt;</span>
+  <span class="tk-fn">mutate</span>(lo = ddd - <span class="tk-num">1.96</span><span class="tk-op">*</span>se_ddd, hi = ddd + <span class="tk-num">1.96</span><span class="tk-op">*</span>se_ddd)
+
+<span class="tk-cmt"># Plot DR-DDD event study</span>
+<span class="tk-fn">ggplot</span>(ddd_dynamic, <span class="tk-fn">aes</span>(e, ddd)) +
+  <span class="tk-fn">geom_ribbon</span>(<span class="tk-fn">aes</span>(ymin = lo, ymax = hi), fill = <span class="tk-str">"#f472b6"</span>, alpha = <span class="tk-num">.2</span>) +
+  <span class="tk-fn">geom_line</span>(colour = <span class="tk-str">"#f472b6"</span>) +
+  <span class="tk-fn">geom_point</span>(colour = <span class="tk-str">"#f472b6"</span>) +
+  <span class="tk-fn">geom_hline</span>(yintercept = <span class="tk-num">0</span>, linetype = <span class="tk-str">"dashed"</span>, colour = <span class="tk-str">"grey60"</span>) +
+  <span class="tk-fn">geom_vline</span>(xintercept = <span class="tk-op">-</span><span class="tk-num">.5</span>, linetype = <span class="tk-str">"dotted"</span>) +
+  <span class="tk-fn">theme_minimal</span>() +
+  <span class="tk-fn">labs</span>(x = <span class="tk-str">"Periods relative to treatment"</span>,
+       y = <span class="tk-str">"DR-DDD estimate (95% CI)"</span>,
+       title = <span class="tk-str">"Sant'Anna & Zhao DR — Triple DiD Event Study"</span>,
+       subtitle = <span class="tk-str">"ATT(g,t | S=1) − ATT(g,t | S=0), doubly robust"</span>)</pre>
+            </div>
+
+            <!-- Ortiz-Villavicencio & Sant'Anna 2025 — triplediff package -->
+            <div class="rcode-card" style="grid-column:1/-1">
+              <div class="rcode-header">
+                <span class="rcode-title">Ortiz-Villavicencio &amp; Sant'Anna (2025) — <code>triplediff</code> package</span>
+                <span class="rcode-badge badge-ddd">triplediff</span>
+              </div>
+              <div class="rcode-desc" style="padding:10px 16px 0">
+                Native DDD estimators with RA, IPW, and doubly-robust identification under a <em>conditional DDD parallel-trends</em> assumption.
+                Key argument: <code>pname</code> = the eligibility/partition variable (the third dimension, e.g. gender, sector, age group).
+                Handles two-period and staggered multi-period designs; UX mirrors the <code>did</code> package.
+                <br><strong>Paper:</strong> Ortiz-Villavicencio &amp; Sant'Anna (2025) — arXiv:2505.09942.
+                <strong>Why it matters:</strong> standard DDD-of-DiDs and 3-way FE regressions are generally invalid when covariates are needed for identification; this package fixes that.
+              </div>
+              <pre class="rcode"><span class="tk-cmt"># Install (CRAN or GitHub dev)</span>
+<span class="tk-fn">install.packages</span>(<span class="tk-str">"triplediff"</span>)
+<span class="tk-cmt"># devtools::install_github("marcelortizv/triplediff")  # dev version</span>
+<span class="tk-kw">library</span>(<span class="tk-str">triplediff</span>)
+
+<span class="tk-cmt"># ── Data requirements ─────────────────────────────────────────────────────────
+# id       : unit identifier           → idname
+# time     : period identifier         → tname
+# y        : outcome                   → yname
+# state    : first period of treatment (0/Inf = never treated) → gname
+# partition: eligibility indicator 0/1 (the 3rd dimension) → pname
+# cov1..k  : pre-treatment covariates  → xformla</span>
+
+<span class="tk-cmt"># ── Case 1: Two-period DDD (single treatment date) ────────────────────────────</span>
+<span class="tk-fn">set.seed</span>(<span class="tk-num">1234</span>)
+df_2p <span class="tk-op">&lt;-</span> <span class="tk-fn">gen_dgp_2periods</span>(size = <span class="tk-num">5000</span>, dgp_type = <span class="tk-num">1</span>)<span class="tk-op">$</span>data
+
+att_2p <span class="tk-op">&lt;-</span> <span class="tk-fn">ddd</span>(
+  yname         = <span class="tk-str">"y"</span>,
+  tname         = <span class="tk-str">"time"</span>,
+  idname        = <span class="tk-str">"id"</span>,
+  gname         = <span class="tk-str">"state"</span>,          <span class="tk-cmt"># first treatment period (0 = never)</span>
+  pname         = <span class="tk-str">"partition"</span>,      <span class="tk-cmt"># eligibility / 3rd dimension</span>
+  xformla       = <span class="tk-op">~</span> cov1 + cov2 + cov3 + cov4,
+  data          = df_2p,
+  control_group = <span class="tk-str">"nevertreated"</span>,
+  est_method    = <span class="tk-str">"dr"</span>              <span class="tk-cmt"># "dr" | "reg" | "ipw"</span>
+)
+<span class="tk-fn">summary</span>(att_2p)
+
+<span class="tk-cmt"># ── Case 2: Staggered multi-period DDD (variation in treatment timing) ────────</span>
+<span class="tk-fn">set.seed</span>(<span class="tk-num">1234</span>)
+df_mp <span class="tk-op">&lt;-</span> <span class="tk-fn">gen_dgp_mult_periods</span>(size = <span class="tk-num">500</span>, dgp_type = <span class="tk-num">1</span>)<span class="tk-op">$</span>data
+
+<span class="tk-cmt"># Group-time ATT(g,t) — mirrors did::att_gt() but for DDD</span>
+att_gt_ddd <span class="tk-op">&lt;-</span> <span class="tk-fn">ddd</span>(
+  yname         = <span class="tk-str">"y"</span>,
+  tname         = <span class="tk-str">"time"</span>,
+  idname        = <span class="tk-str">"id"</span>,
+  gname         = <span class="tk-str">"state"</span>,
+  pname         = <span class="tk-str">"partition"</span>,
+  xformla       = <span class="tk-op">~</span> cov1 + cov2 + cov3 + cov4,
+  data          = df_mp,
+  control_group = <span class="tk-str">"nevertreated"</span>,
+  base_period   = <span class="tk-str">"universal"</span>,      <span class="tk-cmt"># or "varying" for group-specific ref</span>
+  est_method    = <span class="tk-str">"dr"</span>
+)
+<span class="tk-fn">summary</span>(att_gt_ddd)
+
+<span class="tk-cmt"># ── Aggregation: overall ATT and event-study ──────────────────────────────────</span>
+<span class="tk-cmt"># agg_ddd() mirrors did::aggte() — type: "simple", "dynamic", "group", "calendar"</span>
+agg_simple <span class="tk-op">&lt;-</span> <span class="tk-fn">agg_ddd</span>(att_gt_ddd, type = <span class="tk-str">"simple"</span>)
+<span class="tk-fn">summary</span>(agg_simple)
+
+agg_es <span class="tk-op">&lt;-</span> <span class="tk-fn">agg_ddd</span>(att_gt_ddd, type = <span class="tk-str">"dynamic"</span>)
+<span class="tk-fn">summary</span>(agg_es)
+
+<span class="tk-cmt"># ── Plotting ──────────────────────────────────────────────────────────────────</span>
+<span class="tk-fn">plot</span>(agg_es)           <span class="tk-cmt"># built-in event-study plot</span>
+
+<span class="tk-cmt"># ── Manual ggplot from aggregation output ─────────────────────────────────────</span>
+<span class="tk-fn">tibble</span>::<span class="tk-fn">tibble</span>(
+  e   = agg_es<span class="tk-op">$</span>egt,
+  att = agg_es<span class="tk-op">$</span>att.egt,
+  se  = agg_es<span class="tk-op">$</span>se.egt
+) <span class="tk-op">|&gt;</span>
+  <span class="tk-fn">mutate</span>(lo = att - <span class="tk-num">1.96</span><span class="tk-op">*</span>se, hi = att + <span class="tk-num">1.96</span><span class="tk-op">*</span>se) <span class="tk-op">|&gt;</span>
+  <span class="tk-fn">ggplot</span>(<span class="tk-fn">aes</span>(e, att)) +
+  <span class="tk-fn">geom_ribbon</span>(<span class="tk-fn">aes</span>(ymin = lo, ymax = hi), fill = <span class="tk-str">"#f472b6"</span>, alpha = <span class="tk-num">.25</span>) +
+  <span class="tk-fn">geom_line</span>(colour = <span class="tk-str">"#f472b6"</span>, linewidth = <span class="tk-num">.9</span>) +
+  <span class="tk-fn">geom_point</span>(colour = <span class="tk-str">"#f472b6"</span>, size = <span class="tk-num">2</span>) +
+  <span class="tk-fn">geom_hline</span>(yintercept = <span class="tk-num">0</span>, linetype = <span class="tk-str">"dashed"</span>, colour = <span class="tk-str">"grey60"</span>) +
+  <span class="tk-fn">geom_vline</span>(xintercept = <span class="tk-op">-</span><span class="tk-num">.5</span>, linetype = <span class="tk-str">"dotted"</span>) +
+  <span class="tk-fn">theme_minimal</span>() +
+  <span class="tk-fn">labs</span>(
+    x        = <span class="tk-str">"Periods relative to treatment"</span>,
+    y        = <span class="tk-str">"DR-DDD ATT(g,t) (95% CI)"</span>,
+    title    = <span class="tk-str">"Ortiz-Villavicencio & Sant'Anna (2025) — DDD Event Study"</span>,
+    subtitle = <span class="tk-str">"Doubly-robust, conditional DDD parallel trends"</span>
+  )</pre>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ 9. ggplot2 TEMPLATES ═══ -->
+      <div class="accordion">
+        <button class="accordion-btn" aria-expanded="false" onclick="toggleAcc(this)">
+          <span class="accordion-label"><span class="rcode-badge badge-viz">ggplot2</span> Visualisation Templates</span>
+          <span class="accordion-arrow">▼</span>
+        </button>
+        <div class="accordion-body">
+          <div class="rcode-grid">
+
+            <div class="rcode-card">
+              <div class="rcode-header"><span class="rcode-title">Correlation Heat Map</span><span class="rcode-badge badge-viz">ggcorrplot</span></div>
+              <pre class="rcode"><span class="tk-kw">library</span>(<span class="tk-str">ggcorrplot</span>)
+cor_mat <span class="tk-op">&lt;-</span> df <span class="tk-op">|&gt;</span> <span class="tk-fn">select</span>(<span class="tk-kw">where</span>(is.numeric)) <span class="tk-op">|&gt;</span>
+  <span class="tk-fn">cor</span>(use = <span class="tk-str">"pairwise.complete.obs"</span>)
+<span class="tk-fn">ggcorrplot</span>(cor_mat, method = <span class="tk-str">"square"</span>, type = <span class="tk-str">"upper"</span>,
+           lab = <span class="tk-kw">TRUE</span>, lab_size = <span class="tk-num">3</span>,
+           colors = <span class="tk-fn">c</span>(<span class="tk-str">"#a78bfa"</span>, <span class="tk-str">"white"</span>, <span class="tk-str">"#7dd3fc"</span>),
+           ggtheme = <span class="tk-fn">theme_minimal</span>())</pre>
+            </div>
+
+            <div class="rcode-card">
+              <div class="rcode-header"><span class="rcode-title">Coefficient / Forest Plot</span><span class="rcode-badge badge-viz">ggplot2</span></div>
+              <pre class="rcode"><span class="tk-fn">ggplot</span>(coefs, <span class="tk-fn">aes</span>(x = estimate, y = term)) +
+  <span class="tk-fn">geom_point</span>(size = <span class="tk-num">2.5</span>) +
+  <span class="tk-fn">geom_errorbarh</span>(<span class="tk-fn">aes</span>(
+    xmin = estimate - <span class="tk-num">1.96</span><span class="tk-op">*</span>std.error,
+    xmax = estimate + <span class="tk-num">1.96</span><span class="tk-op">*</span>std.error), height = <span class="tk-num">.2</span>) +
+  <span class="tk-fn">geom_vline</span>(xintercept = <span class="tk-num">0</span>, linetype = <span class="tk-str">"dashed"</span>,
+             colour = <span class="tk-str">"grey50"</span>) +
+  <span class="tk-fn">labs</span>(x = <span class="tk-str">"Coefficient (95% CI)"</span>, y = <span class="tk-kw">NULL</span>) +
+  <span class="tk-fn">theme_classic</span>()</pre>
+            </div>
+
+            <div class="rcode-card">
+              <div class="rcode-header"><span class="rcode-title">Overlapping Density — Balance Check</span><span class="rcode-badge badge-viz">ggplot2</span></div>
+              <pre class="rcode"><span class="tk-fn">ggplot</span>(df, <span class="tk-fn">aes</span>(x = outcome, fill = treatment)) +
+  <span class="tk-fn">geom_density</span>(alpha = <span class="tk-num">.35</span>, linewidth = <span class="tk-num">.8</span>) +
+  <span class="tk-fn">scale_fill_manual</span>(
+    values = <span class="tk-fn">c</span>(<span class="tk-str">"#b7bcd1"</span>, <span class="tk-str">"#7dd3fc"</span>),
+    labels = <span class="tk-fn">c</span>(<span class="tk-str">"Control"</span>, <span class="tk-str">"Treated"</span>)) +
+  <span class="tk-fn">theme_minimal</span>() +
+  <span class="tk-fn">labs</span>(x = <span class="tk-str">"Outcome"</span>, y = <span class="tk-str">"Density"</span>, fill = <span class="tk-kw">NULL</span>)</pre>
+            </div>
+
+            <div class="rcode-card">
+              <div class="rcode-header"><span class="rcode-title">Faceted Line / Time Series</span><span class="rcode-badge badge-viz">ggplot2</span></div>
+              <pre class="rcode"><span class="tk-fn">ggplot</span>(df_agg, <span class="tk-fn">aes</span>(x = year, y = value, colour = group)) +
+  <span class="tk-fn">geom_line</span>(linewidth = <span class="tk-num">.8</span>) +
+  <span class="tk-fn">geom_point</span>(size = <span class="tk-num">1.5</span>) +
+  <span class="tk-fn">facet_wrap</span>(<span class="tk-op">~</span>country, scales = <span class="tk-str">"free_y"</span>, ncol = <span class="tk-num">3</span>) +
+  <span class="tk-fn">theme_minimal</span>() +
+  <span class="tk-fn">labs</span>(x = <span class="tk-str">"Year"</span>, y = <span class="tk-str">"Outcome"</span>, colour = <span class="tk-kw">NULL</span>)</pre>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ 10. TEXT ANALYSIS ═══ -->
+      <div class="accordion">
+        <button class="accordion-btn" aria-expanded="false" onclick="toggleAcc(this)">
+          <span class="accordion-label"><span class="rcode-badge badge-text">Text</span> Text Analysis — Topic Models (MY459)</span>
+          <span class="accordion-arrow">▼</span>
+        </button>
+        <div class="accordion-body">
+          <div class="rcode-grid">
+
+            <div class="rcode-card">
+              <div class="rcode-header"><span class="rcode-title">Pre-processing (quanteda)</span><span class="rcode-badge badge-text">quanteda</span></div>
+              <pre class="rcode"><span class="tk-kw">library</span>(<span class="tk-str">quanteda</span>)
+corp    <span class="tk-op">&lt;-</span> <span class="tk-fn">corpus</span>(df<span class="tk-op">$</span>text, docvars = df[, <span class="tk-fn">c</span>(<span class="tk-str">"party"</span>,<span class="tk-str">"date"</span>)])
+dfm_obj <span class="tk-op">&lt;-</span> corp <span class="tk-op">|&gt;</span>
+  <span class="tk-fn">tokens</span>(remove_punct = <span class="tk-kw">TRUE</span>, remove_numbers = <span class="tk-kw">TRUE</span>,
+         remove_symbols = <span class="tk-kw">TRUE</span>, remove_url = <span class="tk-kw">TRUE</span>) <span class="tk-op">|&gt;</span>
+  <span class="tk-fn">tokens_remove</span>(<span class="tk-fn">stopwords</span>(<span class="tk-str">"en"</span>), padding = <span class="tk-kw">TRUE</span>) <span class="tk-op">|&gt;</span>
+  <span class="tk-fn">tokens_ngrams</span>(n = <span class="tk-num">1</span>:<span class="tk-num">2</span>) <span class="tk-op">|&gt;</span>
+  <span class="tk-fn">dfm</span>() <span class="tk-op">|&gt;</span>
+  <span class="tk-fn">dfm_trim</span>(min_termfreq = <span class="tk-num">5</span>)</pre>
+            </div>
+
+            <div class="rcode-card">
+              <div class="rcode-header"><span class="rcode-title">Structural Topic Model (STM)</span><span class="rcode-badge badge-text">stm</span></div>
+              <pre class="rcode"><span class="tk-kw">library</span>(<span class="tk-str">stm</span>)
+stm_in <span class="tk-op">&lt;-</span> <span class="tk-fn">convert</span>(dfm_obj, to = <span class="tk-str">"stm"</span>)
+
+<span class="tk-cmt"># Fit STM with prevalence covariate</span>
+stm_mod <span class="tk-op">&lt;-</span> <span class="tk-fn">stm</span>(
+  documents  = stm_in<span class="tk-op">$</span>documents,
+  vocab      = stm_in<span class="tk-op">$</span>vocab, K = <span class="tk-num">50</span>,
+  prevalence = <span class="tk-op">~</span> party + <span class="tk-fn">s</span>(day_of_year),
+  data       = stm_in<span class="tk-op">$</span>meta,
+  init.type  = <span class="tk-str">"Spectral"</span>, verbose = <span class="tk-kw">FALSE</span>
+)
+<span class="tk-fn">labelTopics</span>(stm_mod, n = <span class="tk-num">10</span>)
+
+<span class="tk-cmt"># Topic-covariate effects</span>
+eff <span class="tk-op">&lt;-</span> <span class="tk-fn">estimateEffect</span>(<span class="tk-num">1</span>:<span class="tk-num">50</span> <span class="tk-op">~</span> party + <span class="tk-fn">s</span>(day_of_year),
+                      stm_mod, meta = stm_in<span class="tk-op">$</span>meta)
+<span class="tk-fn">plot</span>(eff, covariate = <span class="tk-str">"party"</span>, topics = <span class="tk-fn">c</span>(<span class="tk-num">1</span>,<span class="tk-num">5</span>,<span class="tk-num">10</span>),
+     model = stm_mod, method = <span class="tk-str">"difference"</span>,
+     cov.value1 = <span class="tk-str">"Republican"</span>, cov.value2 = <span class="tk-str">"Democrat"</span>)</pre>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </section>
+
     <!-- AWARDS -->
     <section id="awards">
       <div class="section-kicker">Recognition</div>
@@ -393,7 +1184,7 @@
         <div>
           <div class="section-kicker">Get in touch</div>
           <h2>Contact</h2>
-          <p>Email: <a class="inline" href="mailto:andres.romero_acosta@kcl.ac.uk">andres.romero_acosta@kcl.ac.uk</a></p>
+          <p>Email: <a class="inline" href="mailto:v.a.romero-acosta@lse.ac.uk">v.a.romero-acosta@lse.ac.uk</a></p>
           <p>LinkedIn: <a class="inline" href="https://www.linkedin.com/in/andresromero998/">linkedin.com/in/andresromero998</a></p>
         </div>
 
@@ -421,6 +1212,12 @@
 
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
+    function toggleAcc(btn) {
+      const body = btn.nextElementSibling;
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', !open);
+      body.classList.toggle('open', !open);
+    }
   </script>
 </body>
 </html>
